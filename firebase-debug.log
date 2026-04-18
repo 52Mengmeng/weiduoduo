@@ -1,0 +1,58 @@
+[debug] [2026-04-18T23:21:45.926Z] ----------------------------------------------------------------------
+[debug] [2026-04-18T23:21:45.929Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting --project weiduoduo-catalog
+[debug] [2026-04-18T23:21:45.929Z] CLI Version:   15.15.0
+[debug] [2026-04-18T23:21:45.929Z] Platform:      win32
+[debug] [2026-04-18T23:21:45.929Z] Node Version:  v24.15.0
+[debug] [2026-04-18T23:21:45.929Z] Time:          Sat Apr 18 2026 16:21:45 GMT-0700 (北美太平洋夏令时间)
+[debug] [2026-04-18T23:21:45.929Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Desktop\WeiDuoDuo 完整网站包\product_cards
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-04-18T23:22:05.853Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-18T23:22:05.853Z] > authorizing via signed-in user (linfiona58@gmail.com)
+[debug] [2026-04-18T23:22:05.854Z] Checked if tokens are valid: true, expires at: 1776558062220
+[debug] [2026-04-18T23:22:05.854Z] Checked if tokens are valid: true, expires at: 1776558062220
+[debug] [2026-04-18T23:22:05.855Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/weiduoduo-catalog [none]
+[debug] [2026-04-18T23:22:06.128Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/weiduoduo-catalog 403
+[debug] [2026-04-18T23:22:06.128Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/weiduoduo-catalog {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-04-18T23:22:06.128Z] Request to https://firebase.googleapis.com/v1beta1/projects/weiduoduo-catalog had HTTP Error: 403, The caller does not have permission
+[debug] [2026-04-18T23:22:06.129Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/weiduoduo-catalog had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:333:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[error] 
+[error] Error: Failed to get Firebase project weiduoduo-catalog. Please make sure the project exists and your account has permission to access it.
+[debug] [2026-04-18T23:27:08.895Z] ----------------------------------------------------------------------
+[debug] [2026-04-18T23:27:08.897Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init --project weiduoduo-catalog
+[debug] [2026-04-18T23:27:08.898Z] CLI Version:   15.15.0
+[debug] [2026-04-18T23:27:08.898Z] Platform:      win32
+[debug] [2026-04-18T23:27:08.898Z] Node Version:  v24.15.0
+[debug] [2026-04-18T23:27:08.898Z] Time:          Sat Apr 18 2026 16:27:08 GMT-0700 (北美太平洋夏令时间)
+[debug] [2026-04-18T23:27:08.898Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Desktop\WeiDuoDuo 完整网站包\product_cards
+
