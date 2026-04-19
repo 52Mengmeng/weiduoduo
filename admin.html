@@ -1,315 +1,509 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>后台管理 · 尾多多</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{--burnt:#C8440A;--burnt-light:#E8571C;--dark:#111010;--cream:#FAF6F0;--warm:#F2EBE0;--muted:#8A7F75;--border:#E0D8CE;--white:#FFFFFF;--green:#1a7a4a;--red:#c0392b}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark)}
-nav{background:var(--dark);padding:0 48px;height:64px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--burnt);text-decoration:none}
-.logo span{color:rgba(255,255,255,0.4);font-size:0.72rem;font-family:'DM Sans';font-weight:300;letter-spacing:0.15em;display:block;margin-top:-4px}
-.nav-right{display:flex;align-items:center;gap:20px}
-.back-btn{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;letter-spacing:0.05em;transition:color 0.2s}
-.back-btn:hover{color:var(--white)}
-.lang-switcher{display:flex;gap:4px;background:rgba(255,255,255,0.08);border-radius:6px;padding:3px}
-.lang-btn{background:none;border:none;padding:5px 10px;border-radius:4px;font-size:0.72rem;font-weight:700;cursor:pointer;color:rgba(255,255,255,0.4);transition:all 0.18s;font-family:inherit}
-.lang-btn.active{background:var(--burnt);color:var(--white)}
-.layout{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 64px)}
-.sidebar{background:var(--white);border-right:1.5px solid var(--border);padding:36px 28px}
-.sidebar-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:6px}
-.sidebar-sub{font-size:0.78rem;color:var(--muted);margin-bottom:32px}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:0.85rem;background:var(--cream);color:var(--dark);transition:border-color 0.18s;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--burnt)}
-.field textarea{resize:vertical;min-height:72px}
-.img-upload{border:2px dashed var(--border);border-radius:8px;padding:20px;text-align:center;cursor:pointer;transition:border-color 0.2s;background:var(--cream)}
-.img-upload:hover{border-color:var(--burnt)}
-.img-upload input{display:none}
-.img-upload .icon{font-size:2rem;margin-bottom:8px}
-.img-upload .text{font-size:0.78rem;color:var(--muted)}
-.img-preview{width:100%;max-height:160px;object-fit:cover;border-radius:6px;margin-top:10px;display:none}
-.submit-btn{width:100%;background:var(--burnt);color:var(--white);border:none;padding:14px;border-radius:7px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:0.04em;transition:background 0.2s,transform 0.15s;margin-top:4px}
-.submit-btn:hover{background:var(--burnt-light);transform:translateY(-1px)}
-.clear-btn{width:100%;background:transparent;color:var(--muted);border:1.5px solid var(--border);padding:10px;border-radius:7px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px;transition:all 0.2s}
-.clear-btn:hover{border-color:var(--red);color:var(--red)}
-.content{padding:36px 40px}
-.content-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-.content-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700}
-.count-badge{background:var(--burnt);color:var(--white);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:100px;margin-left:10px}
-.toolbar{display:flex;gap:12px;margin-bottom:24px}
-.search-input{flex:1;padding:9px 14px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:0.85rem;background:var(--white);outline:none;transition:border-color 0.18s}
-.search-input:focus{border-color:var(--burnt)}
-.filter-select{padding:9px 14px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:0.85rem;background:var(--white);outline:none;color:var(--dark)}
-.prod-list{display:flex;flex-direction:column;gap:10px}
-.prod-row{background:var(--white);border:1.5px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:16px;padding:14px 18px;transition:all 0.2s}
-.prod-row:hover{border-color:var(--burnt);box-shadow:0 4px 16px rgba(200,68,10,0.08)}
-.prod-thumb{width:54px;height:54px;border-radius:7px;object-fit:cover;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;overflow:hidden}
-.prod-thumb img{width:100%;height:100%;object-fit:cover}
-.prod-info{flex:1;min-width:0}
-.prod-row-name{font-weight:700;font-size:0.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.prod-row-cat{font-size:0.68rem;color:var(--burnt);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
-.prod-row-price{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--burnt);white-space:nowrap}
-.del-btn{background:none;border:1.5px solid var(--border);color:var(--muted);width:34px;height:34px;border-radius:7px;cursor:pointer;font-size:0.9rem;transition:all 0.18s;display:flex;align-items:center;justify-content:center}
-.del-btn:hover{background:#fff0f0;border-color:var(--red);color:var(--red)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
-.stat{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:20px 24px}
-.stat-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--burnt)}
-.stat-lbl{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px}
-.empty-state{text-align:center;padding:80px 20px;color:var(--muted)}
-.empty-state .icon{font-size:3rem;margin-bottom:16px}
-.empty-state p{font-size:0.88rem}
-.uploading{opacity:0.6;pointer-events:none}
-.toast{position:fixed;bottom:32px;right:32px;background:var(--dark);color:var(--white);padding:12px 22px;border-radius:8px;font-size:0.82rem;font-weight:600;opacity:0;transform:translateY(12px);transition:all 0.25s;pointer-events:none;z-index:200;border-left:3px solid var(--burnt)}
-.toast.show{opacity:1;transform:translateY(0)}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{border-right:none;border-bottom:1.5px solid var(--border)}nav{padding:0 20px}.content{padding:24px 20px}.stats{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.stats{grid-template-columns:1fr}.toolbar{flex-wrap:wrap}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>后台管理 | 尾多多 WDD Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E63946;
+      --gold: #FFB703;
+      --green: #2DC653;
+      --blue: #4CC9F0;
+      --bg: #0A0A0F;
+      --surface: #13131A;
+      --surface2: #1C1C26;
+      --surface3: #242432;
+      --border: rgba(255,255,255,0.07);
+      --text: #F0F0F0;
+      --muted: #888899;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* HEADER */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.1rem; font-weight: 900; display: flex; align-items: center; gap: 8px; }
+    .logo-badge { background: var(--red); color: #fff; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+    .admin-tag { font-size: 0.72rem; color: var(--muted); margin-left: 6px; }
+    .header-right { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px; border: none;
+      font-size: 0.82rem; font-family: inherit; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-ghost { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-red:hover { background: #c1121f; }
+    .btn-green { background: var(--green); color: #000; font-weight: 700; }
+    .btn-green:hover { opacity: 0.85; }
+
+    /* LAYOUT */
+    .layout { display: flex; flex: 1; }
+    aside {
+      width: 220px; flex-shrink: 0;
+      background: var(--surface); border-right: 1px solid var(--border);
+      padding: 20px 0;
+      position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto;
+    }
+    .sidebar-section { padding: 0 12px 16px; }
+    .sidebar-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0 8px 8px; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 8px; color: var(--muted);
+      font-size: 0.85rem; cursor: pointer; transition: all 0.15s;
+      margin-bottom: 2px;
+    }
+    .sidebar-item:hover { background: var(--surface2); color: var(--text); }
+    .sidebar-item.active { background: rgba(230,57,70,0.12); color: var(--red); font-weight: 500; }
+    .sidebar-count {
+      margin-left: auto; background: var(--surface3); color: var(--muted);
+      font-size: 0.7rem; padding: 1px 7px; border-radius: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    main { flex: 1; padding: 28px 32px; overflow-y: auto; }
+
+    /* KPI CARDS */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .kpi {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 22px;
+    }
+    .kpi-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+    .kpi-val { font-size: 1.8rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
+    .kpi-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+    .kpi-red .kpi-val { color: var(--red); }
+    .kpi-gold .kpi-val { color: var(--gold); }
+    .kpi-green .kpi-val { color: var(--green); }
+    .kpi-blue .kpi-val { color: var(--blue); }
+
+    /* TABLE */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+    }
+    .section-title { font-size: 1rem; font-weight: 700; }
+    .section-actions { display: flex; gap: 8px; }
+    .search-input {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; padding: 7px 14px;
+      font-size: 0.82rem; font-family: inherit; outline: none; width: 220px;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--red); }
+
+    .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      padding: 12px 16px; text-align: left;
+      font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--muted); background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-weight: 500;
+    }
+    td { padding: 12px 16px; font-size: 0.88rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--surface2); }
+
+    .td-id { font-family: 'Space Grotesk', sans-serif; color: var(--muted); font-size: 0.8rem; }
+    .td-icon { font-size: 1.4rem; }
+    .td-name-zh { font-weight: 600; }
+    .td-name-en { font-size: 0.75rem; color: var(--muted); }
+    .td-price { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--red); }
+    .td-price-tbd { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+
+    .tag { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .tag-new { background: var(--red); color: #fff; }
+    .tag-hot { background: var(--gold); color: #000; }
+    .tag-premium { background: linear-gradient(135deg,#8B5CF6,#6366F1); color: #fff; }
+    .tag-inquiry { background: var(--surface3); color: var(--muted); border: 1px solid var(--border); }
+    .tag-none { color: var(--muted); font-size: 0.72rem; }
+
+    .action-btns { display: flex; gap: 6px; }
+    .action-btn {
+      background: var(--surface3); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 6px; padding: 5px 10px;
+      font-size: 0.75rem; cursor: pointer; transition: all 0.15s; font-family: inherit;
+    }
+    .action-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .action-btn.danger:hover { color: var(--red); border-color: var(--red); }
+
+    /* EDIT MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; width: 100%; max-width: 460px; padding: 28px;
+      position: relative; animation: mIn 0.25s ease;
+    }
+    @keyframes mIn { from { opacity:0; transform: scale(0.95); } to { opacity:1; transform: scale(1); } }
+    .modal-title { font-size: 1rem; font-weight: 700; margin-bottom: 20px; }
+    .form-row { margin-bottom: 14px; }
+    .form-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; display: block; }
+    .form-input, .form-select {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; padding: 9px 12px;
+      font-size: 0.88rem; font-family: inherit; outline: none; transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus { border-color: var(--red); }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+    .modal-close-btn { position: absolute; top: 14px; right: 14px; background: var(--surface2); border: none; border-radius: 6px; color: var(--muted); width: 28px; height: 28px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 300;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 20px;
+      font-size: 0.85rem; display: flex; align-items: center; gap: 10px;
+      transform: translateY(80px); opacity: 0; transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .toast-success .toast-dot { background: var(--green); }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+      padding: 14px 0 0;
+    }
+    .pg-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 6px; padding: 6px 12px;
+      font-size: 0.8rem; cursor: pointer; transition: all 0.15s; font-family: inherit;
+    }
+    .pg-btn:hover { color: var(--text); }
+    .pg-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .pg-info { font-size: 0.78rem; color: var(--muted); margin-right: auto; }
+
+    @media (max-width: 900px) {
+      aside { display: none; }
+      main { padding: 20px 16px; }
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <a class="logo" href="index.html">尾多多 WeiDuoDuo<span id="logo-sub">后台管理</span></a>
-  <div class="nav-right">
-    <a class="back-btn" href="index.html" id="back-link">← 前台首页</a>
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('zh')">中文</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('es')">ES</button>
-    </div>
+
+<header>
+  <div class="logo">
+    尾多多 <span class="logo-badge">WDD</span>
+    <span class="admin-tag">/ 后台管理</span>
   </div>
-</nav>
+  <div class="header-right">
+    <a href="index.html" style="text-decoration:none">
+      <button class="btn btn-ghost">← 前台目录</button>
+    </a>
+    <button class="btn btn-red" onclick="openAddModal()">＋ 新增产品</button>
+    <button class="btn btn-green" onclick="exportCSV()">↓ 导出CSV</button>
+  </div>
+</header>
+
 <div class="layout">
-  <div class="sidebar">
-    <div class="sidebar-title" id="form-title">添加商品</div>
-    <div class="sidebar-sub" id="form-sub">填写信息后点击添加</div>
-    <div class="field"><label id="lbl-name">商品名称</label><input type="text" id="inp-name" placeholder="e.g. 真丝连衣裙"></div>
-    <div class="field">
-      <label id="lbl-cat">商品分类</label>
-      <select id="inp-cat">
-        <option value="女装">女装</option><option value="鞋履">鞋履</option><option value="包袋">包袋</option>
-        <option value="饰品首饰">饰品首饰</option><option value="围巾披肩">围巾披肩</option>
-        <option value="外套大衣">外套大衣</option><option value="家居用品">家居用品</option><option value="宠物用品">宠物用品</option>
-      </select>
+  <aside>
+    <div class="sidebar-section">
+      <div class="sidebar-label">数据概览</div>
+      <div class="sidebar-item active">📦 产品列表 <span class="sidebar-count" id="sb-total">27</span></div>
+      <div class="sidebar-item">💰 价格管理</div>
+      <div class="sidebar-item">📋 报价单</div>
     </div>
-    <div class="field"><label id="lbl-price">价格 (USD)</label><input type="number" id="inp-price" placeholder="29.99" min="0" step="0.01"></div>
-    <div class="field"><label id="lbl-desc">商品描述</label><textarea id="inp-desc" placeholder="简短描述…"></textarea></div>
-    <div class="field">
-      <label id="lbl-img">商品图片</label>
-      <div class="img-upload" onclick="document.getElementById('inp-img').click()">
-        <input type="file" id="inp-img" accept="image/*" onchange="previewImg(this)">
-        <div class="icon">📷</div>
-        <div class="text" id="upload-text">点击上传图片</div>
-      </div>
-      <img class="img-preview" id="img-preview">
+    <div class="sidebar-section">
+      <div class="sidebar-label">筛选</div>
+      <div class="sidebar-item" onclick="sideFilter('all')">全部产品</div>
+      <div class="sidebar-item" onclick="sideFilter('new')">🆕 新品 <span class="sidebar-count" id="sb-new"></span></div>
+      <div class="sidebar-item" onclick="sideFilter('hot')">🔥 热销 <span class="sidebar-count" id="sb-hot"></span></div>
+      <div class="sidebar-item" onclick="sideFilter('inquiry')">❓ 待询价 <span class="sidebar-count" id="sb-inq"></span></div>
     </div>
-    <button class="submit-btn" id="submit-btn" onclick="addProduct()">+ 添加商品</button>
-    <button class="clear-btn" id="clear-btn" onclick="clearForm()">清空表单</button>
-  </div>
-  <div class="content">
-    <div class="stats">
-      <div class="stat"><div class="stat-val" id="stat-total">0</div><div class="stat-lbl" id="stat-total-lbl">商品总数</div></div>
-      <div class="stat"><div class="stat-val" id="stat-cats">0</div><div class="stat-lbl" id="stat-cats-lbl">分类数量</div></div>
-      <div class="stat"><div class="stat-val" id="stat-avg">$0</div><div class="stat-lbl" id="stat-avg-lbl">平均价格</div></div>
-    </div>
-    <div class="content-header">
-      <div style="display:flex;align-items:center">
-        <div class="content-title" id="list-title">商品列表</div>
-        <span class="count-badge" id="count-badge">0</span>
+    <div class="sidebar-section">
+      <div class="sidebar-label">订单信息</div>
+      <div style="padding:8px;font-size:0.78rem;color:var(--muted);line-height:1.8">
+        联系人：Mr. Chen<br/>
+        目的地：Honduras 🇭🇳<br/>
+        集装箱：40HQ<br/>
+        托盘数：29<br/>
+        日期：4/10/2026
       </div>
     </div>
-    <div class="toolbar">
-      <input class="search-input" type="text" id="search-inp" placeholder="搜索商品名称…" oninput="renderList()">
-      <select class="filter-select" id="filter-cat" onchange="renderList()">
-        <option value="" id="opt-all">全部分类</option>
-        <option value="女装">女装</option><option value="鞋履">鞋履</option><option value="包袋">包袋</option>
-        <option value="饰品首饰">饰品首饰</option><option value="围巾披肩">围巾披肩</option>
-        <option value="外套大衣">外套大衣</option><option value="家居用品">家居用品</option><option value="宠物用品">宠物用品</option>
+  </aside>
+
+  <main>
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi kpi-red"><div class="kpi-label">产品总数</div><div class="kpi-val" id="kpi-total">27</div><div class="kpi-sub">品类 SKU</div></div>
+      <div class="kpi kpi-gold"><div class="kpi-label">平均单价</div><div class="kpi-val" id="kpi-avg">—</div><div class="kpi-sub">USD / pcs</div></div>
+      <div class="kpi kpi-green"><div class="kpi-label">有报价产品</div><div class="kpi-val" id="kpi-priced">—</div><div class="kpi-sub">已确认价格</div></div>
+      <div class="kpi kpi-blue"><div class="kpi-label">待询价</div><div class="kpi-val" id="kpi-tbd">—</div><div class="kpi-sub">需要确认报价</div></div>
+    </div>
+
+    <!-- Table -->
+    <div class="section-header">
+      <div class="section-title">产品列表</div>
+      <div class="section-actions">
+        <input class="search-input" type="text" id="admin-search" placeholder="🔍 搜索产品…" oninput="filterTable()" />
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>图标</th>
+            <th>中文名称</th>
+            <th>英文名称</th>
+            <th>单价 (USD)</th>
+            <th>标签</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <span class="pg-info" id="pg-info"></span>
+      <button class="pg-btn" id="pg-prev" onclick="changePage(-1)">‹ 上页</button>
+      <span id="pg-nums"></span>
+      <button class="pg-btn" id="pg-next" onclick="changePage(1)">下页 ›</button>
+    </div>
+  </main>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <button class="modal-close-btn" onclick="closeEditModal()">✕</button>
+    <div class="modal-title" id="modal-title">编辑产品</div>
+    <input type="hidden" id="edit-id" />
+    <div class="form-row">
+      <label class="form-label">中文名称</label>
+      <input class="form-input" id="edit-zh" type="text" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">英文名称</label>
+      <input class="form-input" id="edit-en" type="text" />
+    </div>
+    <div class="form-row-2">
+      <div>
+        <label class="form-label">单价 (USD，留空=待询)</label>
+        <input class="form-input" id="edit-price" type="number" step="0.1" min="0" placeholder="待询价" />
+      </div>
+      <div>
+        <label class="form-label">图标 Emoji</label>
+        <input class="form-input" id="edit-icon" type="text" maxlength="2" />
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-label">产品标签</label>
+      <select class="form-select" id="edit-tag">
+        <option value="">无标签</option>
+        <option value="新品">🆕 新品</option>
+        <option value="热销">🔥 热销</option>
+        <option value="精品">✨ 精品</option>
+        <option value="询价">❓ 待询价</option>
       </select>
     </div>
-    <div class="prod-list" id="prod-list"><div class="empty-state"><div class="icon">⏳</div><p id="loading-text">连接数据库中…</p></div></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeEditModal()">取消</button>
+      <button class="btn btn-red" onclick="saveEdit()">保存更改</button>
+    </div>
   </div>
 </div>
-<div class="toast" id="toast">✅ 已添加</div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getStorage, ref, uploadString, getDownloadURL }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+<!-- Toast -->
+<div class="toast toast-success" id="toast">
+  <div class="toast-dot"></div>
+  <span id="toast-msg">保存成功</span>
+</div>
 
-const app = initializeApp({
-  apiKey:"AIzaSyC7GmedK5JQtp-N8xCK_6w3h7075gLZioY",
-  authDomain:"weiduoduo-e146e.firebaseapp.com",
-  projectId:"weiduoduo-e146e",
-  storageBucket:"weiduoduo-e146e.firebasestorage.app",
-  messagingSenderId:"49856062354",
-  appId:"1:49856062354:web:c3a40fc50a25370770574b"
-});
-const db = getFirestore(app);
-const storage = getStorage(app);
-window._db = db;
-window._storage = storage;
-window._fbRef = ref;
-window._uploadString = uploadString;
-window._getDownloadURL = getDownloadURL;
-window._fbAddDoc = addDoc;
-window._fbDeleteDoc = deleteDoc;
-window._fbDoc = doc;
-window._fbCollection = collection;
-window._fbServerTimestamp = serverTimestamp;
-window._allProducts = [];
-
-onSnapshot(collection(db,"products"),(snap)=>{
-  window._allProducts = snap.docs.map(d=>({id:d.id,...d.data()}));
-  updateStats();
-  renderList();
-});
-</script>
-
+<script src="products.js"></script>
 <script>
-var T = {
-  zh:{logoSub:"后台管理",backLink:"← 前台首页",formTitle:"添加商品",formSub:"填写信息后点击添加",lblName:"商品名称",lblCat:"商品分类",lblPrice:"价格 (USD)",lblDesc:"商品描述",lblImg:"商品图片",uploadText:"点击上传图片",submitBtn:"+ 添加商品",clearBtn:"清空表单",statTotalLbl:"商品总数",statCatsLbl:"分类数量",statAvgLbl:"平均价格",listTitle:"商品列表",searchPH:"搜索商品名称…",optAll:"全部分类",emptyMsg:"还没有商品，从左侧表单添加第一个吧！",toastAdd:"✅ 商品已添加",toastDel:"🗑️ 已删除",toastUploading:"⏳ 上传中...",confirmDel:"确认删除这个商品？",loadingText:"连接数据库中…",
-  cats:{"女装":"女装","鞋履":"鞋履","包袋":"包袋","饰品首饰":"饰品首饰","围巾披肩":"围巾披肩","外套大衣":"外套大衣","家居用品":"家居用品","宠物用品":"宠物用品"}},
-  en:{logoSub:"Admin Panel",backLink:"← Back to Store",formTitle:"Add Product",formSub:"Fill in the details and click Add",lblName:"Product Name",lblCat:"Category",lblPrice:"Price (USD)",lblDesc:"Description",lblImg:"Product Image",uploadText:"Click to upload image",submitBtn:"+ Add Product",clearBtn:"Clear Form",statTotalLbl:"Total Products",statCatsLbl:"Categories",statAvgLbl:"Avg Price",listTitle:"Product List",searchPH:"Search products…",optAll:"All Categories",emptyMsg:"No products yet. Add your first one!",toastAdd:"✅ Product added",toastDel:"🗑️ Deleted",toastUploading:"⏳ Uploading...",confirmDel:"Delete this product?",loadingText:"Connecting to database…",
-  cats:{"女装":"Women's Fashion","鞋履":"Shoes","包袋":"Bags","饰品首饰":"Jewelry","围巾披肩":"Scarves","外套大衣":"Outerwear","家居用品":"Home Goods","宠物用品":"Pet Supplies"}},
-  es:{logoSub:"Panel de Admin",backLink:"← Volver a la Tienda",formTitle:"Agregar Producto",formSub:"Complete los datos y haga clic en Agregar",lblName:"Nombre del Producto",lblCat:"Categoría",lblPrice:"Precio (USD)",lblDesc:"Descripción",lblImg:"Imagen del Producto",uploadText:"Clic para subir imagen",submitBtn:"+ Agregar Producto",clearBtn:"Limpiar Formulario",statTotalLbl:"Total Productos",statCatsLbl:"Categorías",statAvgLbl:"Precio Prom.",listTitle:"Lista de Productos",searchPH:"Buscar productos…",optAll:"Todas las Categorías",emptyMsg:"Sin productos aún. ¡Agrega el primero!",toastAdd:"✅ Producto agregado",toastDel:"🗑️ Eliminado",toastUploading:"⏳ Subiendo...",confirmDel:"¿Eliminar este producto?",loadingText:"Conectando a la base de datos…",
-  cats:{"女装":"Moda Femenina","鞋履":"Calzado","包袋":"Bolsos","饰品首饰":"Joyería","围巾披肩":"Bufandas","外套大衣":"Abrigos","家居用品":"Hogar","宠物用品":"Mascotas"}}
-};
-var currentLang='zh';
-var imgData=null;
+// Work on a mutable copy
+let data = JSON.parse(JSON.stringify(products));
+let filteredData = [...data];
+let editingId = null;
+let page = 1;
+const PAGE_SIZE = 15;
 
-function setLang(lang){
-  currentLang=lang;
-  var t=T[lang];
-  document.querySelectorAll('.lang-btn').forEach(function(b,i){b.classList.toggle('active',['zh','en','es'][i]===lang)});
-  document.getElementById('logo-sub').textContent=t.logoSub;
-  document.getElementById('back-link').textContent=t.backLink;
-  document.getElementById('form-title').textContent=t.formTitle;
-  document.getElementById('form-sub').textContent=t.formSub;
-  document.getElementById('lbl-name').textContent=t.lblName;
-  document.getElementById('lbl-cat').textContent=t.lblCat;
-  document.getElementById('lbl-price').textContent=t.lblPrice;
-  document.getElementById('lbl-desc').textContent=t.lblDesc;
-  document.getElementById('lbl-img').textContent=t.lblImg;
-  document.getElementById('upload-text').textContent=t.uploadText;
-  document.getElementById('submit-btn').textContent=t.submitBtn;
-  document.getElementById('clear-btn').textContent=t.clearBtn;
-  document.getElementById('stat-total-lbl').textContent=t.statTotalLbl;
-  document.getElementById('stat-cats-lbl').textContent=t.statCatsLbl;
-  document.getElementById('stat-avg-lbl').textContent=t.statAvgLbl;
-  document.getElementById('list-title').textContent=t.listTitle;
-  document.getElementById('search-inp').placeholder=t.searchPH;
-  document.getElementById('opt-all').textContent=t.optAll;
-  updateStats();renderList();
+function computeKPIs() {
+  const priced = data.filter(p => p.price !== null);
+  const avg = priced.reduce((s,p) => s + p.price, 0) / priced.length;
+  document.getElementById('kpi-total').textContent = data.length;
+  document.getElementById('kpi-avg').textContent = `$${avg.toFixed(2)}`;
+  document.getElementById('kpi-priced').textContent = priced.length;
+  document.getElementById('kpi-tbd').textContent = data.filter(p => p.price === null).length;
+  document.getElementById('sb-total').textContent = data.length;
+  document.getElementById('sb-new').textContent = data.filter(p=>p.tag==='新品').length;
+  document.getElementById('sb-hot').textContent = data.filter(p=>p.tag==='热销').length;
+  document.getElementById('sb-inq').textContent = data.filter(p=>p.tag==='询价').length;
 }
 
-function previewImg(input){
-  var file=input.files[0];if(!file)return;
-  var reader=new FileReader();
-  reader.onload=function(e){
-    imgData=e.target.result;
-    var p=document.getElementById('img-preview');p.src=imgData;p.style.display='block';
-    document.getElementById('upload-text').textContent=file.name;
-  };
-  reader.readAsDataURL(file);
+function getTagHtml(tag) {
+  if (tag === '新品') return '<span class="tag tag-new">NEW</span>';
+  if (tag === '热销') return '<span class="tag tag-hot">HOT</span>';
+  if (tag === '精品') return '<span class="tag tag-premium">精品</span>';
+  if (tag === '询价') return '<span class="tag tag-inquiry">询价</span>';
+  return '<span class="tag-none">—</span>';
 }
 
-async function addProduct(){
-  var name=document.getElementById('inp-name').value.trim();
-  var cat=document.getElementById('inp-cat').value;
-  var price=parseFloat(document.getElementById('inp-price').value)||0;
-  var desc=document.getElementById('inp-desc').value.trim();
-  if(!name){document.getElementById('inp-name').focus();return;}
-  var t=T[currentLang];
-  var btn=document.getElementById('submit-btn');
-  btn.textContent=t.toastUploading;btn.classList.add('uploading');
-  try{
-    var imgUrl='';
-    if(imgData&&window._storage){
-      try{
-        var imgRef=window._fbRef(window._storage,'products/'+Date.now()+'.jpg');
-        await window._uploadString(imgRef,imgData,'data_url');
-        imgUrl=await window._getDownloadURL(imgRef);
-      }catch(e){
-        // If storage fails, store base64 directly
-        imgUrl=imgData;
-      }
-    }
-    await window._fbAddDoc(window._fbCollection(window._db,'products'),{
-      name:name,cat:cat,price:price,desc:desc,img:imgUrl,
-      createdAt:window._fbServerTimestamp?window._fbServerTimestamp():Date.now()
-    });
-    showToast(t.toastAdd);
-    clearForm();
-  }catch(e){
-    alert('保存失败: '+e.message);
+function renderTable() {
+  const q = document.getElementById('admin-search').value.toLowerCase();
+  filteredData = data.filter(p =>
+    !q || p.nameZh.includes(q) || p.nameEn.toLowerCase().includes(q)
+  );
+
+  const total = filteredData.length;
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+  if (page > totalPages) page = Math.max(1, totalPages);
+  const start = (page-1)*PAGE_SIZE, end = start + PAGE_SIZE;
+  const pageData = filteredData.slice(start, end);
+
+  document.getElementById('pg-info').textContent = `共 ${total} 条，第 ${page}/${Math.max(1,totalPages)} 页`;
+  document.getElementById('pg-prev').disabled = page <= 1;
+  document.getElementById('pg-next').disabled = page >= totalPages;
+
+  const nums = document.getElementById('pg-nums');
+  nums.innerHTML = '';
+  for (let i=1; i<=Math.min(totalPages,7); i++) {
+    const btn = document.createElement('button');
+    btn.className = 'pg-btn' + (i===page?' active':'');
+    btn.textContent = i;
+    btn.onclick = () => { page = i; renderTable(); };
+    nums.appendChild(btn);
   }
-  btn.textContent=t.submitBtn;btn.classList.remove('uploading');
+
+  const tbody = document.getElementById('admin-tbody');
+  tbody.innerHTML = pageData.map(p => `
+    <tr>
+      <td class="td-id">#${String(p.id).padStart(2,'0')}</td>
+      <td class="td-icon">${p.icon}</td>
+      <td><div class="td-name-zh">${p.nameZh}</div></td>
+      <td><div class="td-name-en">${p.nameEn}</div></td>
+      <td>${p.price !== null
+        ? `<span class="td-price">$${p.price.toFixed(2)}</span>`
+        : `<span class="td-price-tbd">待询价</span>`}</td>
+      <td>${getTagHtml(p.tag)}</td>
+      <td>
+        <div class="action-btns">
+          <button class="action-btn" onclick="openEdit(${p.id})">✏️ 编辑</button>
+          <button class="action-btn danger" onclick="deleteProduct(${p.id})">🗑 删除</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
 }
 
-async function delProduct(id){
-  if(!confirm(T[currentLang].confirmDel))return;
-  try{
-    await window._fbDeleteDoc(window._fbDoc(window._db,'products',id));
-    showToast(T[currentLang].toastDel);
-  }catch(e){alert('删除失败: '+e.message);}
-}
-window.delProduct=delProduct;
-
-function clearForm(){
-  document.getElementById('inp-name').value='';
-  document.getElementById('inp-price').value='';
-  document.getElementById('inp-desc').value='';
-  document.getElementById('inp-img').value='';
-  document.getElementById('img-preview').style.display='none';
-  document.getElementById('upload-text').textContent=T[currentLang].uploadText;
-  imgData=null;
-}
-
-function updateStats(){
-  var prods=window._allProducts||[];
-  document.getElementById('stat-total').textContent=prods.length;
-  document.getElementById('count-badge').textContent=prods.length;
-  var cats=new Set(prods.map(function(p){return p.cat}));
-  document.getElementById('stat-cats').textContent=cats.size;
-  var avg=prods.length?(prods.reduce(function(s,p){return s+(parseFloat(p.price)||0)},0)/prods.length).toFixed(2):0;
-  document.getElementById('stat-avg').textContent='$'+avg;
-}
-
-function renderList(){
-  var t=T[currentLang];
-  var q=(document.getElementById('search-inp').value||'').toLowerCase();
-  var fc=document.getElementById('filter-cat').value;
-  var prods=(window._allProducts||[]).filter(function(p){
-    return(!q||(p.name||'').toLowerCase().indexOf(q)>-1)&&(!fc||(p.cat||'')===fc);
+function filterTable() { page = 1; renderTable(); }
+function sideFilter(f) {
+  if (f === 'all') document.getElementById('admin-search').value = '';
+  else document.getElementById('admin-search').value = '';
+  // Simple filter by tag
+  filteredData = f === 'all' ? [...data] : data.filter(p => {
+    if (f==='new') return p.tag==='新品';
+    if (f==='hot') return p.tag==='热销';
+    if (f==='inquiry') return p.tag==='询价'||p.price===null;
   });
-  var el=document.getElementById('prod-list');
-  if(!prods.length){
-    el.innerHTML='<div class="empty-state"><div class="icon">📦</div><p>'+t.emptyMsg+'</p></div>';
-    return;
-  }
-  var emojis={"女装":"👗","鞋履":"👠","包袋":"👜","饰品首饰":"💍","围巾披肩":"🧣","外套大衣":"🧥","家居用品":"🏠","宠物用品":"🐾"};
-  el.innerHTML=prods.map(function(p){
-    var catLabel=t.cats[p.cat]||p.cat||'';
-    var thumb=p.img?'<img src="'+p.img+'">':(emojis[p.cat]||'📦');
-    return '<div class="prod-row">'
-      +'<div class="prod-thumb">'+thumb+'</div>'
-      +'<div class="prod-info"><div class="prod-row-name">'+(p.name||'')+'</div><div class="prod-row-cat">'+catLabel+'</div></div>'
-      +'<div class="prod-row-price">$'+(p.price||0)+'</div>'
-      +'<button class="del-btn" onclick="delProduct(\''+p.id+'\')" title="Delete">🗑</button>'
-      +'</div>';
-  }).join('');
+  page = 1; renderTable();
+}
+function changePage(d) { page += d; renderTable(); }
+
+function openEdit(id) {
+  editingId = id;
+  const p = data.find(x => x.id === id);
+  document.getElementById('modal-title').textContent = `编辑产品 #${String(id).padStart(2,'0')}`;
+  document.getElementById('edit-id').value = id;
+  document.getElementById('edit-zh').value = p.nameZh;
+  document.getElementById('edit-en').value = p.nameEn;
+  document.getElementById('edit-price').value = p.price !== null ? p.price : '';
+  document.getElementById('edit-icon').value = p.icon;
+  document.getElementById('edit-tag').value = p.tag || '';
+  document.getElementById('edit-modal').classList.add('open');
 }
 
-window.addProduct=addProduct;
-window.clearForm=clearForm;
-window.setLang=setLang;
-window.previewImg=previewImg;
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modal-title').textContent = '新增产品';
+  document.getElementById('edit-id').value = '';
+  document.getElementById('edit-zh').value = '';
+  document.getElementById('edit-en').value = '';
+  document.getElementById('edit-price').value = '';
+  document.getElementById('edit-icon').value = '📦';
+  document.getElementById('edit-tag').value = '';
+  document.getElementById('edit-modal').classList.add('open');
+}
+
+function closeEditModal() {
+  document.getElementById('edit-modal').classList.remove('open');
+}
+
+function saveEdit() {
+  const zh = document.getElementById('edit-zh').value.trim();
+  const en = document.getElementById('edit-en').value.trim();
+  const priceRaw = document.getElementById('edit-price').value;
+  const price = priceRaw === '' ? null : parseFloat(priceRaw);
+  const icon = document.getElementById('edit-icon').value || '📦';
+  const tag = document.getElementById('edit-tag').value;
+
+  if (!zh || !en) { alert('请填写产品名称'); return; }
+
+  if (editingId !== null) {
+    const idx = data.findIndex(p => p.id === editingId);
+    data[idx] = { ...data[idx], nameZh: zh, nameEn: en, price, icon, tag };
+    showToast('✅ 产品已更新');
+  } else {
+    const newId = Math.max(...data.map(p=>p.id)) + 1;
+    data.push({ id: newId, nameZh: zh, nameEn: en, price, icon, tag, unit: 'pcs', category: '3C' });
+    showToast('✅ 产品已新增');
+  }
+  closeEditModal();
+  computeKPIs();
+  renderTable();
+}
+
+function deleteProduct(id) {
+  if (!confirm('确定删除该产品？')) return;
+  data = data.filter(p => p.id !== id);
+  showToast('🗑 产品已删除');
+  computeKPIs();
+  renderTable();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function exportCSV() {
+  const headers = ['#', '中文名', '英文名', '单价(USD)', '单位', '标签', '类别'];
+  const rows = data.map(p => [p.id, p.nameZh, p.nameEn, p.price ?? '待询', p.unit, p.tag, p.category]);
+  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const blob = new Blob(['\ufeff'+csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = '3C产品报价单_WDD.csv'; a.click();
+  showToast('📥 CSV已导出');
+}
+
+// Init
+computeKPIs();
+renderTable();
 </script>
 </body>
 </html>
