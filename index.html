@@ -1,1026 +1,333 @@
 <!DOCTYPE html>
+<html lang="zh-CN">
 
-<html lang="zh">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>尾多多 WeiDuoDuo — 北美正品库存直销</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --green:      #1B3A2D;
-  --green-deep: #0F2318;
-  --green-mid:  #254D3A;
-  --green-light:#2E6B4F;
-  --gold:       #C9A84C;
-  --gold-light: #E2C77A;
-  --gold-pale:  #F5EDD6;
-  --cream:      #FAF7F0;
-  --white:      #FFFFFF;
-  --gray:       #8A9E94;
-  --text-dim:   #A8BDB4;
-}
-html { scroll-behavior: smooth; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>商品列表 · 尾多多 WeiDuoDuo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #E63946;
+      --gold: #FFB703;
+      --green: #2DC653;
+      --bg: #0A0A0F;
+      --surface: #13131A;
+      --surface2: #1C1C26;
+      --border: rgba(255,255,255,0.07);
+      --text: #F0F0F0;
+      --muted: #888899;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
 body {
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Noto Sans SC', sans-serif;
-  background: var(--green-deep);
-  color: var(--cream);
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* ── LANG BAR ── */
-.lang-bar {
-background: var(–green-deep);
-border-bottom: 1px solid rgba(201,168,76,0.2);
-padding: 7px 28px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-size: 11px;
-color: var(–gray);
-letter-spacing: 1px;
-}
-.lang-list { display: flex; gap: 6px; flex-wrap: wrap; }
-.lang-list span {
-cursor: pointer;
-padding: 3px 10px;
-border-radius: 20px;
-transition: all 0.25s;
-border: 1px solid transparent;
-font-size: 11px;
-}
-.lang-list span:hover, .lang-list span.active {
-color: var(–gold);
-border-color: rgba(201,168,76,0.4);
-background: rgba(201,168,76,0.07);
-}
-
-/* ── HEADER ── */
+/* HEADER */
 header {
-background: var(–green-deep);
-border-bottom: 1px solid rgba(201,168,76,0.25);
-position: sticky;
-top: 0;
-z-index: 100;
-padding: 0 32px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-height: 68px;
-backdrop-filter: blur(10px);
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
 }
-.logo { display: flex; align-items: baseline; gap: 12px; }
-.logo-cn {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 28px;
-font-weight: 700;
-color: var(–gold);
-letter-spacing: 6px;
-}
-.logo-en {
-font-size: 11px;
-color: var(–gray);
-letter-spacing: 4px;
-font-weight: 300;
-text-transform: uppercase;
-}
-.header-right { display: flex; gap: 12px; align-items: center; }
-.btn-retail, .btn-wholesale {
-padding: 9px 22px;
-border-radius: 2px;
-font-size: 13px;
-font-weight: 500;
-cursor: pointer;
-letter-spacing: 1.5px;
-transition: all 0.25s;
-font-family: ‘Noto Sans SC’, sans-serif;
-}
-.btn-retail {
-background: var(–gold);
-color: var(–green-deep);
-border: none;
-}
-.btn-retail:hover { background: var(–gold-light); }
-.btn-wholesale {
-background: transparent;
-border: 1px solid rgba(201,168,76,0.5);
-color: var(–gold);
-}
-.btn-wholesale:hover {
-background: rgba(201,168,76,0.1);
-border-color: var(–gold);
-}
+.logo { font-size: 1.1rem; font-weight: 900; display: flex; align-items: center; gap: 8px; }
+.logo-badge { font-size: 0.5rem; color: var(--red); font-weight: 700; letter-spacing: 0.06em; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; border: 1px solid var(--red); }
+.header-right { display: flex; gap: 10px; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; border: none; font-size: 0.82rem; font-family: inherit; cursor: pointer; transition: all 0.2s; }
+.btn-ghost { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--text); }
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: #c1121f; }
 
-/* ── TICKER ── */
-.ticker {
-background: var(–green-mid);
-border-top: 1px solid rgba(201,168,76,0.2);
-border-bottom: 1px solid rgba(201,168,76,0.2);
-padding: 9px 0;
-overflow: hidden;
-white-space: nowrap;
-}
-.ticker-inner {
-display: inline-flex;
-animation: ticker 40s linear infinite;
-gap: 80px;
-}
-.ticker-inner span { font-size: 11px; letter-spacing: 2.5px; color: var(–gold-light); font-weight: 300; }
-.ticker-inner .dot { color: var(–gold); font-size: 8px; }
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ── HERO ── */
+/* HERO */
 .hero {
-position: relative;
-padding: 100px 32px 90px;
-text-align: center;
-overflow: hidden;
-background: var(–green-deep);
+  padding: 40px 24px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
 }
-.hero::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background:
-radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
-radial-gradient(ellipse 50% 40% at 20% 100%, rgba(27,58,45,0.8) 0%, transparent 60%);
-}
-.hero::after {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image: repeating-linear-gradient(
-0deg, transparent, transparent 60px,
-rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px
-),
-repeating-linear-gradient(
-90deg, transparent, transparent 60px,
-rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px
-);
-}
-.hero-inner { position: relative; z-index: 1; }
-.hero-eyebrow {
-display: inline-flex;
-align-items: center;
-gap: 12px;
-margin-bottom: 32px;
-font-size: 11px;
-letter-spacing: 4px;
-color: var(–gold);
-font-weight: 300;
-text-transform: uppercase;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-content: ‘’;
-width: 40px;
-height: 1px;
-background: linear-gradient(90deg, transparent, var(–gold));
-}
-.hero-eyebrow::after { background: linear-gradient(90deg, var(–gold), transparent); }
-
-.hero h1 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(52px, 8vw, 100px);
-font-weight: 600;
-line-height: 1.05;
-letter-spacing: 3px;
-color: var(–cream);
-margin-bottom: 10px;
-}
-.hero h1 em {
-font-style: italic;
-color: var(–gold);
-}
-.hero-tagline {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(16px, 2.5vw, 22px);
-font-style: italic;
-color: var(–gold-light);
-letter-spacing: 2px;
-margin-bottom: 28px;
-font-weight: 400;
-opacity: 0.85;
-}
-.hero-sub {
-font-size: 14px;
-color: var(–text-dim);
-max-width: 560px;
-margin: 0 auto 48px;
-line-height: 1.9;
-font-weight: 300;
-letter-spacing: 0.5px;
-}
-.hero-brands {
-display: flex;
-gap: 12px;
-justify-content: center;
-flex-wrap: wrap;
-margin-bottom: 52px;
-}
-.brand-chip {
-background: rgba(201,168,76,0.08);
-border: 1px solid rgba(201,168,76,0.25);
-padding: 6px 18px;
-font-size: 12px;
-color: var(–gold-light);
-letter-spacing: 1.5px;
-font-weight: 300;
-}
-.hero-cta {
-display: flex;
-gap: 16px;
-justify-content: center;
-flex-wrap: wrap;
-}
-.cta-big {
-padding: 15px 52px;
-font-size: 13px;
-font-weight: 500;
-letter-spacing: 3px;
-cursor: pointer;
-border: none;
-transition: all 0.3s;
-text-transform: uppercase;
-font-family: ‘Noto Sans SC’, sans-serif;
-}
-.cta-gold {
-background: var(–gold);
-color: var(–green-deep);
-}
-.cta-gold:hover { background: var(–gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
-.cta-outline {
-background: transparent;
-border: 1px solid rgba(201,168,76,0.45);
-color: var(–gold);
-}
-.cta-outline:hover { background: rgba(201,168,76,0.08); border-color: var(–gold); transform: translateY(-2px); }
-
-/* ── DIVIDER ── */
-.ornament {
-text-align: center;
-padding: 20px;
-color: var(–gold);
-font-size: 18px;
-opacity: 0.4;
-letter-spacing: 12px;
+.hero h1 { font-size: 2rem; font-weight: 900; margin-bottom: 8px; }
+.hero p { color: var(--muted); font-size: 0.9rem; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(230,57,70,0.15);
+  color: var(--red);
+  border: 1px solid rgba(230,57,70,0.3);
+  padding: 4px 14px; border-radius: 20px;
+  font-size: 0.75rem; margin-bottom: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.05em;
 }
 
-/* ── NOTICE BANNER ── */
-.notice-banner {
-background: var(–green-mid);
-border-top: 1px solid rgba(201,168,76,0.25);
-border-bottom: 1px solid rgba(201,168,76,0.25);
+/* FILTERS */
+.filters {
+  padding: 16px 24px;
+  display: flex; gap: 8px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
 }
-.notice-inner { max-width: 1100px; margin: 0 auto; padding: 52px 32px; }
-.notice-banner h2 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 28px;
-font-weight: 600;
-color: var(–gold);
-letter-spacing: 4px;
-margin-bottom: 32px;
-display: flex;
-align-items: center;
-gap: 14px;
+.filter-label { font-size: 0.75rem; color: var(--muted); margin-right: 4px; }
+.filter-btn {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); font-size: 0.8rem;
+  cursor: pointer; transition: all 0.15s; font-family: inherit;
 }
-.notice-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-gap: 16px;
-}
-.notice-card {
-background: rgba(15,35,24,0.6);
-border: 1px solid rgba(201,168,76,0.18);
-padding: 28px 24px;
-transition: border-color 0.3s;
-}
-.notice-card:hover { border-color: rgba(201,168,76,0.45); }
-.notice-card .icon { font-size: 24px; margin-bottom: 14px; display: block; opacity: 0.85; }
-.notice-card h3 {
-font-size: 12px;
-font-weight: 700;
-color: var(–gold);
-margin-bottom: 10px;
-letter-spacing: 2.5px;
-text-transform: uppercase;
-}
-.notice-card p { font-size: 13px; color: var(–text-dim); line-height: 1.8; font-weight: 300; }
-.notice-card p strong { color: var(–cream); font-weight: 500; }
+.filter-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+.filter-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
 
-.accept-box {
-margin-top: 24px;
-background: rgba(201,168,76,0.06);
-border: 1px solid rgba(201,168,76,0.25);
-border-left: 3px solid var(–gold);
-padding: 22px 28px;
-font-size: 13px;
-color: var(–text-dim);
-line-height: 1.9;
-font-weight: 300;
+.search-box {
+  margin-left: auto;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); border-radius: 8px; padding: 7px 14px;
+  font-size: 0.82rem; font-family: inherit; outline: none;
+  transition: border-color 0.2s; width: 200px;
 }
-.accept-box strong { color: var(–gold); font-weight: 600; }
+.search-box:focus { border-color: var(--red); }
 
-/* ── ENTRIES ── */
-.entries-section { max-width: 1100px; margin: 72px auto; padding: 0 32px; }
-.section-title { text-align: center; margin-bottom: 44px; }
-.section-title h2 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 38px;
-font-weight: 600;
-letter-spacing: 5px;
-color: var(–cream);
-margin-bottom: 10px;
-}
-.section-title p { color: var(–gray); font-size: 12px; letter-spacing: 2px; font-weight: 300; }
-
-.entry-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-@media(max-width:640px) { .entry-cards { grid-template-columns: 1fr; } }
-
-.entry-card {
-border: 1px solid rgba(201,168,76,0.2);
-padding: 52px 40px;
-text-align: center;
-cursor: pointer;
-transition: all 0.3s;
-position: relative;
-overflow: hidden;
-}
-.entry-card::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-opacity: 0;
-transition: opacity 0.3s;
-}
-.entry-card.retail { background: linear-gradient(135deg, var(–green-mid) 0%, var(–green) 100%); }
-.entry-card.retail::before { background: radial-gradient(ellipse at top, rgba(201,168,76,0.12), transparent 70%); }
-.entry-card.wholesale { background: linear-gradient(135deg, var(–green-deep) 0%, var(–green-mid) 100%); }
-.entry-card.wholesale::before { background: radial-gradient(ellipse at top, rgba(201,168,76,0.08), transparent 70%); }
-.entry-card:hover { border-color: rgba(201,168,76,0.55); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
-.entry-card:hover::before { opacity: 1; }
-
-.entry-icon { font-size: 36px; margin-bottom: 20px; display: block; opacity: 0.9; }
-.entry-card h3 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 30px;
-font-weight: 600;
-letter-spacing: 5px;
-margin-bottom: 14px;
-color: var(–gold);
-}
-.entry-card p { font-size: 13px; line-height: 1.85; color: var(–text-dim); margin-bottom: 32px; font-weight: 300; }
-.entry-btn {
-display: inline-block;
-padding: 12px 36px;
-font-size: 11px;
-font-weight: 500;
-letter-spacing: 3px;
-cursor: pointer;
-transition: all 0.25s;
-text-transform: uppercase;
-font-family: ‘Noto Sans SC’, sans-serif;
-}
-.entry-card.retail .entry-btn { background: var(–gold); color: var(–green-deep); border: none; }
-.entry-card.retail .entry-btn:hover { background: var(–gold-light); }
-.entry-card.wholesale .entry-btn { background: transparent; border: 1px solid rgba(201,168,76,0.5); color: var(–gold); }
-.entry-card.wholesale .entry-btn:hover { background: rgba(201,168,76,0.1); border-color: var(–gold); }
-
-/* ── CATEGORIES ── */
-.categories-section {
-background: var(–green-mid);
-border-top: 1px solid rgba(201,168,76,0.15);
-border-bottom: 1px solid rgba(201,168,76,0.15);
-padding: 72px 32px;
-}
-.categories-inner { max-width: 1100px; margin: 0 auto; }
-.cat-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
-gap: 10px;
-margin-top: 44px;
-}
-.cat-item {
-background: rgba(15,35,24,0.5);
-border: 1px solid rgba(201,168,76,0.15);
-padding: 22px 10px;
-text-align: center;
-cursor: pointer;
-transition: all 0.25s;
-}
-.cat-item:hover {
-border-color: rgba(201,168,76,0.5);
-background: rgba(201,168,76,0.07);
-transform: translateY(-2px);
-}
-.cat-item .cat-icon { font-size: 26px; margin-bottom: 10px; display: block; }
-.cat-item .cat-name { font-size: 12px; color: var(–cream); font-weight: 400; letter-spacing: 0.5px; }
-.cat-item .cat-en { font-size: 10px; color: var(–gray); margin-top: 3px; letter-spacing: 1px; font-weight: 300; }
-
-/* ── HOW IT WORKS ── */
-.how-section { max-width: 1100px; margin: 72px auto; padding: 0 32px; }
-.steps {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 0;
-margin-top: 44px;
-position: relative;
-}
-.steps::before {
-content: ‘’;
-position: absolute;
-top: 24px;
-left: 12%;
-right: 12%;
-height: 1px;
-background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
-}
-.step { text-align: center; padding: 0 20px 0; }
-.step-num {
-width: 48px;
-height: 48px;
-border: 1px solid rgba(201,168,76,0.4);
-color: var(–gold);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 22px;
-font-weight: 600;
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 0 auto 20px;
-background: var(–green-deep);
-position: relative;
-z-index: 1;
-}
-.step h3 { font-size: 13px; font-weight: 500; margin-bottom: 10px; letter-spacing: 2px; color: var(–cream); }
-.step p { font-size: 12px; color: var(–gray); line-height: 1.7; font-weight: 300; }
-
-/* ── VALUE ── */
-.value-section {
-background: var(–green-deep);
-border-top: 1px solid rgba(201,168,76,0.15);
-border-bottom: 1px solid rgba(201,168,76,0.15);
-padding: 80px 32px;
-}
-.value-inner {
-max-width: 1100px;
-margin: 0 auto;
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 80px;
-align-items: center;
-}
-@media(max-width:700px) { .value-inner { grid-template-columns: 1fr; gap: 40px; } }
-.value-text h2 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 40px;
-font-weight: 600;
-line-height: 1.2;
-letter-spacing: 3px;
-color: var(–cream);
-margin-bottom: 24px;
-}
-.value-text h2 em { font-style: italic; color: var(–gold); }
-.value-text p { font-size: 13px; color: var(–text-dim); line-height: 1.95; font-weight: 300; margin-bottom: 16px; }
-.value-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.stat-box {
-background: var(–green-mid);
-border: 1px solid rgba(201,168,76,0.18);
-padding: 28px 20px;
-text-align: center;
-transition: border-color 0.3s;
-}
-.stat-box:hover { border-color: rgba(201,168,76,0.45); }
-.stat-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 52px;
-font-weight: 600;
-color: var(–gold);
-line-height: 1;
-margin-bottom: 8px;
-}
-.stat-label { font-size: 10px; color: var(–gray); letter-spacing: 2.5px; font-weight: 300; text-transform: uppercase; }
-
-/* ── MODAL ── */
-.modal-overlay {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(10,20,15,0.88);
-z-index: 200;
-align-items: center;
-justify-content: center;
-padding: 20px;
-backdrop-filter: blur(4px);
-}
-.modal-overlay.open { display: flex; }
-.modal-box {
-background: var(–green-mid);
-border: 1px solid rgba(201,168,76,0.3);
-max-width: 520px;
-width: 100%;
-padding: 44px;
-position: relative;
-animation: slideUp 0.3s ease;
-}
-@keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-.modal-close {
-position: absolute; top:16px; right:20px;
-font-size: 22px; cursor: pointer;
-color: var(–gray); background: none; border: none; line-height: 1;
-transition: color 0.2s;
-}
-.modal-close:hover { color: var(–gold); }
-.modal-box h2 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 26px;
-font-weight: 600;
-color: var(–gold);
-letter-spacing: 4px;
-margin-bottom: 6px;
-}
-.modal-box .modal-sub { font-size: 12px; color: var(–gray); margin-bottom: 28px; line-height: 1.7; letter-spacing: 0.5px; }
-.contact-item {
-display: flex;
-align-items: center;
-gap: 16px;
-padding: 16px 18px;
-background: rgba(15,35,24,0.6);
-margin-bottom: 10px;
-border: 1px solid rgba(201,168,76,0.15);
-cursor: pointer;
-transition: all 0.25s;
-}
-.contact-item:hover { border-color: rgba(201,168,76,0.45); }
-.contact-icon { font-size: 20px; opacity: 0.85; }
-.contact-label { font-size: 10px; color: var(–gray); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; }
-.contact-value { font-size: 14px; font-weight: 400; color: var(–cream); letter-spacing: 0.5px; }
-.modal-note {
-margin-top: 20px; font-size: 11px; color: var(–gray);
-line-height: 1.7; border-top: 1px solid rgba(201,168,76,0.15);
-padding-top: 16px; font-weight: 300;
+/* PRODUCT GRID */
+.grid-wrap { padding: 24px; }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
 }
 
-/* ── POLICY MODAL ── */
-.policy-modal {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(10,20,15,0.92);
-z-index: 300;
-align-items: center;
-justify-content: center;
-padding: 20px;
-backdrop-filter: blur(4px);
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
 }
-.policy-modal.open { display: flex; }
-.policy-box {
-background: var(–green-mid);
-border: 1px solid rgba(201,168,76,0.3);
-max-width: 680px;
-width: 100%;
-max-height: 85vh;
-overflow-y: auto;
-padding: 44px;
-position: relative;
-animation: slideUp 0.3s ease;
-}
-.policy-box h2 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 24px;
-font-weight: 600;
-color: var(–gold);
-letter-spacing: 3px;
-margin-bottom: 6px;
-}
-.policy-lang-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 28px; }
-.policy-lang-tab {
-padding: 4px 14px;
-border: 1px solid rgba(201,168,76,0.25);
-font-size: 11px;
-cursor: pointer;
-color: var(–gray);
-background: transparent;
-transition: all 0.2s;
-letter-spacing: 1px;
-font-family: ‘Noto Sans SC’, sans-serif;
-}
-.policy-lang-tab.active { background: var(–gold); border-color: var(–gold); color: var(–green-deep); }
-.policy-content { display: none; }
-.policy-content.active { display: block; }
-.policy-content p { font-size: 13px; color: var(–text-dim); line-height: 1.9; margin-bottom: 14px; font-weight: 300; }
-.policy-content p strong { color: var(–cream); font-weight: 500; }
-.policy-content .highlight {
-background: rgba(201,168,76,0.07);
-border-left: 2px solid var(–gold);
-padding: 14px 18px;
-margin: 18px 0;
-font-size: 13px;
-color: var(–text-dim);
-line-height: 1.8;
+.product-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
-/* ── FOOTER ── */
+.card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.card-tag {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 6px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.tag-新品 { background: var(--red); color: #fff; }
+.tag-热销 { background: var(--gold); color: #000; }
+.tag-精品 { background: linear-gradient(135deg, #8B5CF6, #6366F1); color: #fff; }
+.tag-询价 { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+.card-name-zh {
+  font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 4px; line-height: 1.4;
+}
+.card-name-en {
+  font-size: 0.72rem; color: var(--muted);
+  margin-bottom: 12px; line-height: 1.5;
+}
+.card-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--red);
+}
+.card-price-tbd {
+  font-size: 0.8rem; color: var(--muted); font-style: italic;
+}
+.card-category {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 0.65rem; color: var(--muted);
+  background: var(--surface2); padding: 2px 8px;
+  border-radius: 4px; border: 1px solid var(--border);
+}
+
+/* EMPTY STATE */
+.empty { text-align: center; padding: 60px 24px; color: var(--muted); }
+.empty-icon { font-size: 3rem; margin-bottom: 12px; }
+
+/* STATS BAR */
+.stats-bar {
+  padding: 10px 24px;
+  font-size: 0.78rem; color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 20px; align-items: center;
+}
+.stats-bar span { color: var(--text); font-weight: 500; }
+
+/* FOOTER */
 footer {
-background: var(–green-deep);
-border-top: 1px solid rgba(201,168,76,0.2);
-padding: 52px 32px 36px;
-text-align: center;
+  text-align: center; padding: 32px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem; color: var(--muted);
+  margin-top: 40px;
 }
-.footer-ornament { font-size: 20px; color: var(–gold); opacity: 0.35; letter-spacing: 10px; margin-bottom: 16px; }
-.footer-logo {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 32px;
-font-weight: 600;
-color: var(–gold);
-letter-spacing: 8px;
-margin-bottom: 6px;
-}
-.footer-sub { font-size: 10px; color: var(–gray); letter-spacing: 3px; margin-bottom: 28px; font-weight: 300; }
-.footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
-.footer-links a {
-color: var(–gray);
-text-decoration: none;
-font-size: 11px;
-cursor: pointer;
-transition: color 0.2s;
-letter-spacing: 2px;
-text-transform: uppercase;
-}
-.footer-links a:hover { color: var(–gold); }
-.footer-copy { font-size: 10px; color: rgba(138,158,148,0.4); letter-spacing: 1px; }
 
-@media(max-width:480px) {
-.header-right .btn-wholesale { display: none; }
-.hero { padding: 60px 20px 60px; }
-.entry-card { padding: 36px 24px; }
+/* NOTICE */
+.notice-bar {
+  background: rgba(230,57,70,0.08);
+  border-bottom: 1px solid rgba(230,57,70,0.15);
+  padding: 10px 24px;
+  font-size: 0.78rem; color: #cc7777;
+  text-align: center;
 }
-</style>
 
+@media (max-width: 600px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .hero h1 { font-size: 1.4rem; }
+  .search-box { width: 100%; margin-left: 0; margin-top: 8px; }
+  .filters { flex-direction: column; align-items: flex-start; }
+}
+```
+
+  </style>
 </head>
 <body>
-
-<!-- LANG BAR -->
-
-<div class="lang-bar">
-  <div style="letter-spacing:2px; font-size:10px;">🌿 LANGUAGE</div>
-  <div class="lang-list">
-    <span class="active" onclick="setLang('zh',this)">中文</span>
-    <span onclick="setLang('en',this)">English</span>
-    <span onclick="setLang('es',this)">Español</span>
-    <span onclick="setLang('ja',this)">日本語</span>
-    <span onclick="setLang('ko',this)">한국어</span>
-    <span onclick="setLang('fr',this)">Français</span>
-  </div>
-</div>
 
 <!-- HEADER -->
 
 <header>
   <div class="logo">
-    <div class="logo-cn">尾多多</div>
-    <div class="logo-en">Weiduoduo · weiduoduo.shop</div>
+    尾多多 <span class="logo-badge">WDD</span>
+    <span style="font-size:0.72rem;color:var(--muted);font-weight:400;">/ 商品列表</span>
   </div>
   <div class="header-right">
-    <button class="btn-retail" onclick="document.getElementById('entries').scrollIntoView({behavior:'smooth'})">
-      <span class="t" data-zh="零售入口" data-en="Retail" data-es="Minorista" data-ja="小売" data-ko="소매" data-fr="Détail">零售入口</span>
-    </button>
-    <button class="btn-wholesale" onclick="openWholesale()">
-      <span class="t" data-zh="批发洽谈" data-en="Wholesale" data-es="Mayorista" data-ja="卸売" data-ko="도매" data-fr="Gros">批发洽谈</span>
-    </button>
+    <a href=" " style="text-decoration:none;">
+      <button class="btn btn-ghost">← 返回首页</button>
+    </a >
   </div>
 </header>
 
-<!-- TICKER -->
+<!-- NOTICE -->
 
-<div class="ticker">
-  <div class="ticker-inner">
-    <span>北美正品库存直销</span><span class="dot">◆</span>
-    <span>AMAZON · COSTCO · SAM'S · CARREFOUR</span><span class="dot">◆</span>
-    <span>不退不换 · 买前确认</span><span class="dot">◆</span>
-    <span>省去中间商 · 端到端直达</span><span class="dot">◆</span>
-    <span>ALL SALES FINAL · NO RETURNS</span><span class="dot">◆</span>
-    <span>WHOLESALE PRICE · NO MIDDLEMAN</span><span class="dot">◆</span>
-    <span>北美正品库存直销</span><span class="dot">◆</span>
-    <span>AMAZON · COSTCO · SAM'S · CARREFOUR</span><span class="dot">◆</span>
-    <span>不退不换 · 买前确认</span><span class="dot">◆</span>
-    <span>省去中间商 · 端到端直达</span><span class="dot">◆</span>
-    <span>ALL SALES FINAL · NO RETURNS</span><span class="dot">◆</span>
-    <span>WHOLESALE PRICE · NO MIDDLEMAN</span><span class="dot">◆</span>
-  </div>
+<div class="notice-bar">
+  ⚠ 所有商品一律不退不换 · All Sales Final · No Returns · No Exchanges
 </div>
 
 <!-- HERO -->
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow t"
-      data-zh="北美库存 · 直销到家"
-      data-en="North America Clearance Direct"
-      data-es="Liquidación Directa Norte América"
-      data-ja="北米在庫直販"
-      data-ko="북미 재고 직판"
-      data-fr="Liquidation Directe Amérique du Nord">北美库存 · 直销到家</div>
-
-```
-<h1 class="t"
-  data-zh="买得便宜<br><em>用得舒心</em>"
-  data-en="Buy Smart<br><em>Live Well</em>"
-  data-es="Compra Barato<br><em>Úsalo Bien</em>"
-  data-ja="賢く買って<br><em>快適に使う</em>"
-  data-ko="현명하게 구매<br><em>편안하게 사용</em>"
-  data-fr="Achetez Malin<br><em>Vivez Bien</em>">买得便宜<br><em>用得舒心</em></h1>
-
-<p class="hero-tagline t"
-  data-zh="端到端直达 · 零中间商 · 真品质"
-  data-en="End to End · Zero Middlemen · Real Quality"
-  data-es="Directo · Sin Intermediarios · Calidad Real"
-  data-ja="エンドツーエンド · 仲介なし · 本物の品質"
-  data-ko="엔드투엔드 · 중간상 없음 · 진짜 품질"
-  data-fr="Direct · Sans Intermédiaires · Vraie Qualité">端到端直达 · 零中间商 · 真品质</p>
-
-<p class="hero-sub t"
-  data-zh="直接来自北美亚马逊、Costco、山姆、家乐福的正品库存，省去层层中间商，让每个北美家庭用上真正好品质的货。"
-  data-en="Authentic clearance inventory from North America's biggest retailers. No middlemen, no markups — real quality at real prices, delivered directly to you."
-  data-es="Inventario auténtico de los mayores minoristas de América del Norte. Sin intermediarios, calidad real a precios reales."
-  data-ja="北米最大手の小売業者からの本物の在庫。中間業者なし、上乗せなし。本物の品質を実際の価格で。"
-  data-ko="북미 최대 소매업체의 정품 재고. 중간상 없음, 가격 인상 없음. 진짜 품질을 진짜 가격으로."
-  data-fr="Stocks authentiques des plus grands détaillants d'Amérique du Nord. Sans intermédiaires, qualité réelle à prix réels.">直接来自北美亚马逊、Costco、山姆、家乐福的正品库存，省去层层中间商，让每个北美家庭用上真正好品质的货。</p>
-
-<div class="hero-brands">
-  <div class="brand-chip">Amazon 亚马逊</div>
-  <div class="brand-chip">Costco 开市客</div>
-  <div class="brand-chip">Sam's Club 山姆</div>
-  <div class="brand-chip">Carrefour 家乐福</div>
+<div class="hero">
+  <div class="hero-badge">NORTH AMERICA CLEARANCE · DIRECT TO YOU</div>
+  <h1>全部商品</h1>
+  <p>北美正品库存直销 · 省去中间商 · 价格透明</p >
 </div>
 
-<div class="hero-cta">
-  <button class="cta-big cta-gold" onclick="document.getElementById('entries').scrollIntoView({behavior:'smooth'})">
-    <span class="t" data-zh="立即选购" data-en="Shop Now" data-es="Comprar Ahora" data-ja="今すぐ購入" data-ko="지금 쇼핑" data-fr="Acheter Maintenant">立即选购</span>
-  </button>
-  <button class="cta-big cta-outline" onclick="openPolicy()">
-    <span class="t" data-zh="⚠ 购买前必读" data-en="⚠ Read Policy First" data-es="⚠ Leer Antes" data-ja="⚠ 購入前に必読" data-ko="⚠ 구매 전 필독" data-fr="⚠ Lire d'Abord">⚠ 购买前必读</span>
-  </button>
+<!-- FILTERS -->
+
+<div class="filters">
+  <span class="filter-label">筛选：</span>
+  <button class="filter-btn active" onclick="filterBy('all')">全部</button>
+  <button class="filter-btn" onclick="filterBy('新品')">🆕 新品</button>
+  <button class="filter-btn" onclick="filterBy('热销')">🔥 热销</button>
+  <button class="filter-btn" onclick="filterBy('精品')">✨ 精品</button>
+  <button class="filter-btn" onclick="filterBy('3C')">🖥️ 3C电子</button>
+  <button class="filter-btn" onclick="filterBy('家居')">🏠 家居灯具</button>
+  <button class="filter-btn" onclick="filterBy('厨房')">🍳 厨房用品</button>
+  <input class="search-box" type="text" id="searchBox" placeholder="🔍 搜索商品..." oninput="onSearch()" />
 </div>
-```
 
+<!-- STATS -->
+
+<div class="stats-bar" id="statsBar">
+  共 <span id="countSpan">-</span> 件商品
+</div>
+
+<!-- GRID -->
+
+<div class="grid-wrap">
+  <div class="product-grid" id="productGrid"></div>
+  <div class="empty" id="emptyState" style="display:none;">
+    <div class="empty-icon">🔍</div>
+    <div>没有找到相关商品</div>
   </div>
-</section>
-
-<!-- NOTICE -->
-
-<section class="notice-banner">
-  <div class="notice-inner">
-    <h2>⚠ <span class="t" data-zh="购买原则 — 下单前请仔细阅读" data-en="Purchase Policy — Please Read Before Ordering" data-es="Política — Lea Antes de Pedir" data-ja="購入原則 — ご注文前に必ずお読みください" data-ko="구매 원칙 — 주문 전 필독" data-fr="Politique — Lisez Avant de Commander">购买原则 — 下单前请仔细阅读</span></h2>
-    <div class="notice-grid">
-      <div class="notice-card">
-        <span class="icon">🚫</span>
-        <h3 class="t" data-zh="不退货" data-en="No Returns" data-es="Sin Devoluciones" data-ja="返品不可" data-ko="반품 불가" data-fr="Pas de Retours">不退货</h3>
-        <p class="t" data-zh="所有商品<strong>一律不退货</strong>，无论任何原因，包括瑕疵、不满意或损坏，均不予退款。" data-en="<strong>No returns accepted</strong> for any reason including defects, dissatisfaction, or damage." data-es="<strong>Sin devoluciones</strong> bajo ninguna circunstancia, incluidos defectos o daños." data-ja="いかなる理由でも<strong>返品不可</strong>。瑕疵・不満・破損含む。" data-ko="어떤 이유로도 <strong>반품 불가</strong>. 결함, 불만, 손상 포함." data-fr="<strong>Aucun retour</strong> pour quelque raison que ce soit.">所有商品<strong>一律不退货</strong>，无论任何原因，包括瑕疵、不满意或损坏，均不予退款。</p>
-      </div>
-      <div class="notice-card">
-        <span class="icon">🔄</span>
-        <h3 class="t" data-zh="不换货" data-en="No Exchanges" data-es="Sin Cambios" data-ja="交換不可" data-ko="교환 불가" data-fr="Pas d'Échanges">不换货</h3>
-        <p class="t" data-zh="本店<strong>不提供换货服务</strong>。库存有限，任何情况下均不换货。" data-en="<strong>No exchanges</strong> under any circumstances. Limited stock, no replacements." data-es="<strong>Sin cambios</strong>. Stock limitado, sin reemplazos." data-ja="<strong>交換不可</strong>。在庫限り、代替品なし。" data-ko="<strong>교환 불가</strong>. 재고 제한, 대체품 없음." data-fr="<strong>Pas d'échanges</strong>. Stock limité, sans remplacement.">本店<strong>不提供换货服务</strong>。库存有限，任何情况下均不换货。</p>
-      </div>
-      <div class="notice-card">
-        <span class="icon">📦</span>
-        <h3 class="t" data-zh="库存货说明" data-en="Stock Notice" data-es="Aviso de Stock" data-ja="在庫商品について" data-ko="재고 상품 안내" data-fr="Avis Stock">库存货说明</h3>
-        <p class="t" data-zh="商品为<strong>退货或清仓库存</strong>，可能有外包装瑕疵或轻微磨损。均为<strong>北美正品</strong>，非假冒。" data-en="Items are <strong>clearance or returned stock</strong>. May have packaging defects or light wear. All <strong>authentic North American products</strong>." data-es="Artículos de <strong>liquidación o devolución</strong>. Pueden tener defectos. Son <strong>productos auténticos</strong>." data-ja="<strong>クリアランスまたは返品在庫</strong>。パッケージの傷等あり。すべて<strong>正規品</strong>。" data-ko="<strong>재고 또는 반품 상품</strong>. 포장 결함 가능. 모두 <strong>정품</strong>." data-fr="Articles de <strong>liquidation ou retournés</strong>. Défauts possibles. Tous <strong>authentiques</strong>.">商品为<strong>退货或清仓库存</strong>，可能有外包装瑕疵或轻微磨损。均为<strong>北美正品</strong>，非假冒。</p>
-      </div>
-      <div class="notice-card">
-        <span class="icon">🤝</span>
-        <h3 class="t" data-zh="信任原则 · 无客服" data-en="Trust-Based · No Support" data-es="Confianza · Sin Soporte" data-ja="信頼原則·CS不可" data-ko="신뢰 원칙·고객서비스 없음" data-fr="Confiance · Sans Support">信任原则 · 无客服</h3>
-        <p class="t" data-zh="本店<strong>没有客服，没有商务</strong>。凭信任做生意——你信我，我诚待你。能接受就买，不能接受请勿下单。" data-en="<strong>No customer service team</strong>. Trust-based trading. You trust us, we're honest with you. Accept this or don't order." data-es="<strong>Sin servicio al cliente</strong>. Comercio de confianza. Si acepta, compre. Si no, no pida." data-ja="<strong>カスタマーサービスなし</strong>。信頼ベースの取引。承認できる方のみご購入を。" data-ko="<strong>고객 서비스 없음</strong>. 신뢰 기반 거래. 수락하면 구매, 아니면 주문 말것." data-fr="<strong>Pas de service client</strong>. Commerce de confiance. Si vous acceptez, achetez. Sinon, ne commandez pas.">本店<strong>没有客服，没有商务</strong>。凭信任做生意——你信我，我诚待你。能接受就买，不能接受请勿下单。</p>
-      </div>
-    </div>
-    <div class="accept-box">
-      <strong>【重要声明】</strong>
-      <span class="t"
-        data-zh="下单即代表您已充分了解并接受以上全部条款。我们的唯一目标：让北美千家万户用上真正好品质的货，端到端直达，省去中间商20%的提成。你信我，我诚待你。能接受，欢迎加入；不能接受，请不要购买——这是对彼此的尊重。"
-        data-en="Placing an order means you fully accept all terms above. Our only goal: get quality goods directly to North American households, cutting out 20% middleman markup. You trust us, we're honest. Welcome if you accept; please don't order if you don't."
-        data-es="Al pedir, acepta todos los términos. Nuestro único objetivo: llevar calidad directamente a los hogares, sin el 20% de intermediarios. Si acepta, bienvenido. Si no, no pida."
-        data-ja="注文することで上記すべての条件に同意したとみなします。唯一の目標：20%の中間マージンをカットし、良質な商品を直接お届け。"
-        data-ko="주문하면 위 모든 조건에 동의한 것으로 간주됩니다. 유일한 목표: 20% 중간상 없애고 품질 좋은 상품 직접 전달."
-        data-fr="En commandant, vous acceptez tous les termes. Notre seul objectif: livrer la qualité directement, sans les 20% d'intermédiaires.">下单即代表您已充分了解并接受以上全部条款。我们的唯一目标：让北美千家万户用上真正好品质的货，端到端直达，省去中间商20%的提成。你信我，我诚待你。能接受，欢迎加入；不能接受，请不要购买——这是对彼此的尊重。</span>
-    </div>
-  </div>
-</section>
-
-<!-- ENTRY CARDS -->
-
-<section class="entries-section" id="entries">
-  <div class="section-title">
-    <h2 class="t" data-zh="选择您的入口" data-en="Choose Your Entry" data-es="Elige Tu Entrada" data-ja="入口を選択" data-ko="입구 선택" data-fr="Choisissez Votre Entrée">选择您的入口</h2>
-    <p class="t" data-zh="零售直接购买 · 批发需先联系确认" data-en="Retail — buy directly · Wholesale — contact us first" data-es="Minorista — directo · Mayorista — contactar primero" data-ja="小売 — 直接購入 · 卸売 — まずご連絡" data-ko="소매 — 직접 구매 · 도매 — 먼저 문의" data-fr="Détail — direct · Gros — contactez d'abord">零售直接购买 · 批发需先联系确认</p>
-  </div>
-  <div class="entry-cards">
-    <div class="entry-card retail">
-      <span class="entry-icon">🛒</span>
-      <h3 class="t" data-zh="零售入口" data-en="RETAIL" data-es="MINORISTA" data-ja="小 売" data-ko="소 매" data-fr="DÉTAIL">零售入口</h3>
-      <p class="t" data-zh="直接按标价购买，一件起售，价格透明，无需注册。适合个人及家庭采购，品类丰富，均为北美正品库存。" data-en="Buy directly at listed prices. Single item, transparent pricing, no registration required. Perfect for personal and household purchases." data-es="Compra directa a precios indicados. Artículo único, sin registro. Para uso personal y familiar." data-ja="表示価格で直接購入。1点から、透明な価格。個人・家庭向け。" data-ko="표시된 가격으로 직접 구매. 1개부터, 투명한 가격. 개인 및 가정 구매." data-fr="Achat direct aux prix affichés. À l'unité, sans inscription. Pour usage personnel et familial.">直接按标价购买，一件起售，价格透明，无需注册。适合个人及家庭采购，品类丰富，均为北美正品库存。</p>
-      <button class="entry-btn" onclick="openPolicy()">
-        <span class="t" data-zh="确认原则后购买" data-en="Confirm Policy & Shop" data-es="Confirmar y Comprar" data-ja="規約確認後購入" data-ko="원칙 확인 후 구매" data-fr="Confirmer et Acheter">确认原则后购买</span>
-      </button>
-    </div>
-    <div class="entry-card wholesale">
-      <span class="entry-icon">📦</span>
-      <h3 class="t" data-zh="批发入口" data-en="WHOLESALE" data-es="MAYORISTA" data-ja="卸 売" data-ko="도 매" data-fr="GROS">批发入口</h3>
-      <p class="t" data-zh="批量采购享批发价，单件即批发价。需提前联系确认货量。适合二次销售商、小型零售商、社区团购。批发价为最终价，不议价。" data-en="Bulk purchase at wholesale pricing — per-unit wholesale rate. Contact first to confirm stock. For resellers, small retailers, group buys. Wholesale price is final." data-es="Precio mayorista por unidad. Contactar primero. Para revendedores y minoristas. Precio final." data-ja="卸売価格で大量購入。まずご連絡を。再販業者向け。卸値が最終価格。" data-ko="도매 가격으로 대량 구매. 먼저 문의. 재판매업자·공동구매. 도매가 최종가." data-fr="Prix de gros à l'unité. Contactez d'abord. Pour revendeurs. Prix final.">批量采购享批发价，单件即批发价。需提前联系确认货量。适合二次销售商、小型零售商、社区团购。批发价为最终价，不议价。</p>
-      <button class="entry-btn" onclick="openWholesale()">
-        <span class="t" data-zh="联系我们洽谈" data-en="Contact Us" data-es="Contáctenos" data-ja="お問い合わせ" data-ko="문의하기" data-fr="Contactez-Nous">联系我们洽谈</span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="categories-section">
-  <div class="categories-inner">
-    <div class="section-title">
-      <h2 class="t" data-zh="商品分类" data-en="Categories" data-es="Categorías" data-ja="カテゴリー" data-ko="카테고리" data-fr="Catégories">商品分类</h2>
-      <p class="t" data-zh="来自北美各大超市的退货及清仓库存 · 品类丰富" data-en="Clearance & returned stock from North America's major retailers" data-es="Stock de liquidación de grandes minoristas norteamericanos" data-ja="北米大手小売業者のクリアランス・返品在庫" data-ko="북미 주요 소매업체의 재고 및 반품 상품" data-fr="Stocks de liquidation des grands détaillants nord-américains">来自北美各大超市的退货及清仓库存 · 品类丰富</p>
-    </div>
-    <div class="cat-grid">
-      <div class="cat-item"><span class="cat-icon">🏠</span><div class="cat-name t" data-zh="家居用品" data-en="Home Goods" data-es="Hogar" data-ja="ホーム" data-ko="홈 용품" data-fr="Maison">家居用品</div><div class="cat-en">Home Goods</div></div>
-      <div class="cat-item"><span class="cat-icon">🍳</span><div class="cat-name t" data-zh="厨房用具" data-en="Kitchen" data-es="Cocina" data-ja="キッチン" data-ko="주방" data-fr="Cuisine">厨房用具</div><div class="cat-en">Kitchen</div></div>
-      <div class="cat-item"><span class="cat-icon">👗</span><div class="cat-name t" data-zh="服装鞋帽" data-en="Apparel" data-es="Ropa" data-ja="アパレル" data-ko="의류" data-fr="Vêtements">服装鞋帽</div><div class="cat-en">Apparel</div></div>
-      <div class="cat-item"><span class="cat-icon">🖥️</span><div class="cat-name t" data-zh="电子产品" data-en="Electronics" data-es="Electrónica" data-ja="電子機器" data-ko="전자제품" data-fr="Électronique">电子产品</div><div class="cat-en">Electronics</div></div>
-      <div class="cat-item"><span class="cat-icon">🧴</span><div class="cat-name t" data-zh="美容护肤" data-en="Beauty" data-es="Belleza" data-ja="ビューティー" data-ko="뷰티" data-fr="Beauté">美容护肤</div><div class="cat-en">Beauty</div></div>
-      <div class="cat-item"><span class="cat-icon">🧸</span><div class="cat-name t" data-zh="玩具童品" data-en="Toys & Kids" data-es="Juguetes" data-ja="おもちゃ" data-ko="장난감" data-fr="Jouets">玩具童品</div><div class="cat-en">Toys & Kids</div></div>
-      <div class="cat-item"><span class="cat-icon">🏋️</span><div class="cat-name t" data-zh="运动健身" data-en="Sports" data-es="Deportes" data-ja="スポーツ" data-ko="스포츠" data-fr="Sports">运动健身</div><div class="cat-en">Sports</div></div>
-      <div class="cat-item"><span class="cat-icon">🌿</span><div class="cat-name t" data-zh="保健营养" data-en="Health" data-es="Salud" data-ja="健康" data-ko="건강" data-fr="Santé">保健营养</div><div class="cat-en">Health</div></div>
-      <div class="cat-item"><span class="cat-icon">📚</span><div class="cat-name t" data-zh="书籍文具" data-en="Books" data-es="Libros" data-ja="本・文具" data-ko="도서·문구" data-fr="Livres">书籍文具</div><div class="cat-en">Books</div></div>
-      <div class="cat-item"><span class="cat-icon">🐾</span><div class="cat-name t" data-zh="宠物用品" data-en="Pet Supplies" data-es="Mascotas" data-ja="ペット" data-ko="펫 용품" data-fr="Animaux">宠物用品</div><div class="cat-en">Pet Supplies</div></div>
-      <div class="cat-item"><span class="cat-icon">🔧</span><div class="cat-name t" data-zh="工具五金" data-en="Tools" data-es="Herramientas" data-ja="工具" data-ko="공구" data-fr="Outils">工具五金</div><div class="cat-en">Tools</div></div>
-      <div class="cat-item"><span class="cat-icon">🛋️</span><div class="cat-name t" data-zh="家具床品" data-en="Furniture" data-es="Muebles" data-ja="家具・寝具" data-ko="가구·침구" data-fr="Meubles">家具床品</div><div class="cat-en">Furniture</div></div>
-      <div class="cat-item"><span class="cat-icon">🍫</span><div class="cat-name t" data-zh="零食食品" data-en="Snacks" data-es="Snacks" data-ja="スナック" data-ko="스낵·식품" data-fr="Snacks">零食食品</div><div class="cat-en">Snacks</div></div>
-      <div class="cat-item"><span class="cat-icon">🚗</span><div class="cat-name t" data-zh="汽车用品" data-en="Auto" data-es="Automóvil" data-ja="カー用品" data-ko="자동차" data-fr="Auto">汽车用品</div><div class="cat-en">Auto</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-
-<section class="how-section">
-  <div class="section-title">
-    <h2 class="t" data-zh="购买流程" data-en="How It Works" data-es="Cómo Funciona" data-ja="購入方法" data-ko="구매 방법" data-fr="Comment Ça Marche">购买流程</h2>
-    <p class="t" data-zh="四步直达北美好货" data-en="Four simple steps to quality deals" data-es="Cuatro pasos simples" data-ja="4ステップで簡単購入" data-ko="4단계 간단 구매" data-fr="Quatre étapes simples">四步直达北美好货</p>
-  </div>
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><h3 class="t" data-zh="阅读原则" data-en="Read Policy" data-es="Leer Política" data-ja="規約確認" data-ko="원칙 읽기" data-fr="Lire la Politique">阅读原则</h3><p class="t" data-zh="了解不退不换原则，库存货有瑕疵也接受再买。" data-en="Understand all sales final, clearance stock, defects possible." data-es="Ventas finales, stock de liquidación, defectos posibles." data-ja="返品不可、在庫商品、瑕疵の可能性を理解。" data-ko="반품 불가, 재고 상품, 결함 가능성 이해." data-fr="Ventes finales, stock de liquidation, défauts possibles.">了解不退不换原则，库存货有瑕疵也接受再买。</p></div>
-    <div class="step"><div class="step-num">2</div><h3 class="t" data-zh="选择入口" data-en="Choose Entry" data-es="Elegir Entrada" data-ja="入口を選ぶ" data-ko="입구 선택" data-fr="Choisir">选择入口</h3><p class="t" data-zh="个人购买走零售；批量采购先联系确认库存。" data-en="Individual: Retail. Bulk: contact us first." data-es="Individual: Minorista. Masivo: contactar primero." data-ja="個人：小売。大量：まずご連絡。" data-ko="개인: 소매. 대량: 먼저 문의." data-fr="Individuel: Détail. En gros: contactez-nous.">个人购买走零售；批量采购先联系确认库存。</p></div>
-    <div class="step"><div class="step-num">3</div><h3 class="t" data-zh="浏览商品" data-en="Browse Items" data-es="Ver Productos" data-ja="商品を見る" data-ko="상품 탐색" data-fr="Parcourir">浏览商品</h3><p class="t" data-zh="按分类浏览，标价即最终价，无隐藏收费。" data-en="Browse by category. Listed price is final, no hidden fees." data-es="Por categoría. Precio final, sin cargos ocultos." data-ja="カテゴリーから探す。表示価格が最終価格。" data-ko="카테고리별 탐색. 표시 가격 = 최종 가격." data-fr="Par catégorie. Prix affiché = prix final.">按分类浏览，标价即最终价，无隐藏收费。</p></div>
-    <div class="step"><div class="step-num">4</div><h3 class="t" data-zh="下单完成" data-en="Place Order" data-es="Hacer Pedido" data-ja="注文する" data-ko="주문 완료" data-fr="Commander">下单完成</h3><p class="t" data-zh="付款后发货，全程无客服，凭信任完成交易。" data-en="Pay, we ship. No customer service. Trust-based." data-es="Pagar, enviamos. Sin servicio al cliente." data-ja="支払い後発送。CS不可。信頼ベース。" data-ko="결제 후 발송. 고객 서비스 없음. 신뢰 기반." data-fr="Payer, nous expédions. Sans support.">付款后发货，全程无客服，凭信任完成交易。</p></div>
-  </div>
-</section>
-
-<!-- VALUE -->
-
-<section class="value-section">
-  <div class="value-inner">
-    <div class="value-text">
-      <h2 class="t" data-zh="为什么选择<br><em>尾多多？</em>" data-en="Why Choose<br><em>Weiduoduo?</em>" data-es="¿Por Qué<br><em>Weiduoduo?</em>" data-ja="なぜ<br><em>尾多多？</em>" data-ko="왜<br><em>尾多多인가?</em>" data-fr="Pourquoi<br><em>Weiduoduo?</em>">为什么选择<br><em>尾多多？</em></h2>
-      <p class="t" data-zh="我们不是商城。没有广告费，没有平台提成，没有客服团队的成本。我们把真实的北美库存，以最真实的价格，直接送到您手里。" data-en="We're not a marketplace. No ad fees, no platform commissions, no customer service overhead. Real clearance inventory at real prices, direct to you." data-es="No somos un marketplace. Sin tarifas, sin comisiones. Inventario real a precios reales, directamente a usted." data-ja="マーケットプレイスではありません。広告費なし、手数料なし。本物の在庫を実際の価格で直接お届け。" data-ko="저희는 마켓플레이스가 아닙니다. 광고비, 수수료 없음. 실제 재고를 실제 가격으로 직접 전달." data-fr="Nous ne sommes pas un marketplace. Pas de frais, pas de commissions. Stock réel, prix réels, livré chez vous.">我们不是商城。没有广告费，没有平台提成，没有客服团队的成本。我们把真实的北美库存，以最真实的价格，直接送到您手里。</p>
-      <p class="t" data-zh="这是一个信任的生意。你相信我货是真的，我保证价格是最低的。端到端，简单直接，买好就行。" data-en="This is trust-based commerce. You trust the goods are authentic, we guarantee the lowest price. End to end, simple and direct." data-es="Comercio de confianza. Confía en la autenticidad, garantizamos el precio más bajo. Simple y directo." data-ja="信頼のビジネス。正品を信頼していただければ最低価格を保証。シンプルかつ直接的。" data-ko="신뢰 기반 비즈니스. 정품 신뢰 = 최저가 보장. 간단하고 직접적." data-fr="Commerce de confiance. Faites confiance à l'authenticité, nous garantissons les prix les plus bas.">这是一个信任的生意。你相信我货是真的，我保证价格是最低的。端到端，简单直接，买好就行。</p>
-    </div>
-    <div class="value-stats">
-      <div class="stat-box"><div class="stat-num">4</div><div class="stat-label t" data-zh="合作超市" data-en="RETAIL SOURCES" data-es="FUENTES" data-ja="提携小売" data-ko="제휴 브랜드" data-fr="SOURCES">合作超市</div></div>
-      <div class="stat-box"><div class="stat-num">0%</div><div class="stat-label t" data-zh="中间商提成" data-en="MIDDLEMAN CUT" data-es="INTERMEDIARIOS" data-ja="中間業者" data-ko="중간상 수수료" data-fr="INTERMÉDIAIRES">中间商提成</div></div>
-      <div class="stat-box"><div class="stat-num">14</div><div class="stat-label t" data-zh="商品大类" data-en="CATEGORIES" data-es="CATEGORÍAS" data-ja="カテゴリー" data-ko="카테고리" data-fr="CATÉGORIES">商品大类</div></div>
-      <div class="stat-box"><div class="stat-num">6</div><div class="stat-label t" data-zh="支持语言" data-en="LANGUAGES" data-es="IDIOMAS" data-ja="対応言語" data-ko="지원 언어" data-fr="LANGUES">支持语言</div></div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 
 <footer>
-  <div class="footer-ornament">— ◆ —</div>
-  <div class="footer-logo">尾多多</div>
-  <div class="footer-sub">WEIDUODUO.SHOP · NORTH AMERICA CLEARANCE DIRECT</div>
-  <div class="footer-links">
-    <a onclick="openPolicy()"><span class="t" data-zh="购买原则" data-en="Purchase Policy" data-es="Política" data-ja="購入原則" data-ko="구매 원칙" data-fr="Politique">购买原则</span></a>
-    <a onclick="openWholesale()"><span class="t" data-zh="批发合作" data-en="Wholesale" data-es="Mayorista" data-ja="卸売" data-ko="도매" data-fr="Gros">批发合作</span></a>
-    <a onclick="document.getElementById('entries').scrollIntoView({behavior:'smooth'})"><span class="t" data-zh="零售入口" data-en="Shop Retail" data-es="Tienda" data-ja="小売" data-ko="소매" data-fr="Boutique">零售入口</span></a>
-    <a onclick="document.querySelector('.categories-section').scrollIntoView({behavior:'smooth'})"><span class="t" data-zh="商品分类" data-en="Categories" data-es="Categorías" data-ja="カテゴリー" data-ko="카테고리" data-fr="Catégories">商品分类</span></a>
-  </div>
-  <div class="footer-copy">© 2025 尾多多 Weiduoduo · weiduoduo.shop · 所有商品售出不退不换 · All sales final</div>
+  尾多多 WEIDUODUO.SHOP · 北美正品库存直销<br>
+  © 2025 All Sales Final · No Returns · No Exchanges
 </footer>
 
-<!-- WHOLESALE MODAL -->
-
-<div class="modal-overlay" id="wholesaleModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeWholesale()">×</button>
-    <h2><span class="t" data-zh="批发合作洽谈" data-en="Wholesale Enquiry" data-es="Consulta Mayorista" data-ja="卸売お問い合わせ" data-ko="도매 문의" data-fr="Demande Gros">批发合作洽谈</span></h2>
-    <p class="modal-sub t" data-zh="请告知所需品类及大概数量，我们会尽快回复报价。批发价为最终价，不再议价。" data-en="Please share the product type and quantity needed. We'll reply with pricing. Wholesale price is final — no negotiation." data-es="Comparta categoría y cantidad. Le responderemos. Precio final, sin negociación." data-ja="必要な商品と数量をお知らせください。見積もりをお返しします。卸値が最終価格です。" data-ko="필요한 상품 카테고리와 수량을 알려주세요. 도매가는 최종가입니다." data-fr="Partagez la catégorie et la quantité. Nous répondrons. Prix final, sans négociation.">请告知所需品类及大概数量，我们会尽快回复报价。批发价为最终价，不再议价。</p>
-    <div class="contact-item" onclick="window.open('https://wa.me/16504767866')"><div class="contact-icon">📱</div><div><div class="contact-label">WhatsApp</div><div class="contact-value">+1 (650) 476-7866</div></div></div>
-    <div class="contact-item"><div class="contact-icon">💬</div><div><div class="contact-label">WeChat / 微信</div><div class="contact-value">CEO-7-8</div></div></div>
-    <div class="contact-item" onclick="window.open('mailto:linfiona58@gmail.com')"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-value">linfiona58@gmail.com</div></div></div>
-    <div style="margin-top:20px; border-top:1px solid rgba(201,168,76,0.15); padding-top:20px;">
-      <div style="font-size:11px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px;">支付方式 / Payment</div>
-      <div class="contact-item" onclick="window.open('https://paypal.me/hailiLin')"><div class="contact-icon">💳</div><div><div class="contact-label">PayPal</div><div class="contact-value">paypal.me/hailiLin</div></div></div>
-      <div class="contact-item"><div class="contact-icon">⚡</div><div><div class="contact-label">Zelle</div><div class="contact-value">linfiona58@gmail.com</div></div></div>
-    </div>
-    <p class="modal-note t" data-zh="⚠ 批发同样适用不退不换原则，请在联系前确认已接受购买原则。" data-en="⚠ All sales final applies to wholesale too. Please confirm you accept our purchase policy before contacting." data-es="⚠ Ventas finales aplican al por mayor también. Confirme que acepta la política antes de contactar." data-ja="⚠ 返品不可は卸売にも適用。ご連絡前に購入原則をご確認ください。" data-ko="⚠ 반품 불가는 도매에도 적용. 문의 전 구매 원칙을 확인해 주세요." data-fr="⚠ Ventes finales s'appliquent au gros aussi. Confirmez que vous acceptez la politique avant de contacter.">⚠ 批发同样适用不退不换原则，请在联系前确认已接受购买原则。</p>
-  </div>
-</div>
-
-<!-- POLICY MODAL -->
-
-<div class="policy-modal" id="policyModal">
-  <div class="policy-box">
-    <button class="modal-close" onclick="closePolicy()">×</button>
-    <h2>⚠ 购买原则 / Purchase Policy</h2>
-    <div class="policy-lang-tabs">
-      <button class="policy-lang-tab active" onclick="showPolicyLang('zh')">中文</button>
-      <button class="policy-lang-tab" onclick="showPolicyLang('en')">English</button>
-      <button class="policy-lang-tab" onclick="showPolicyLang('es')">Español</button>
-      <button class="policy-lang-tab" onclick="showPolicyLang('ja')">日本語</button>
-      <button class="policy-lang-tab" onclick="showPolicyLang('ko')">한국어</button>
-      <button class="policy-lang-tab" onclick="showPolicyLang('fr')">Français</button>
-    </div>
-    <div class="policy-content active" id="policy-zh">
-      <p><strong>在购买之前，请仔细阅读以下原则。下单即代表您已充分理解并接受全部条款。</strong></p>
-      <div class="highlight">🚫 本店所有商品：<strong>不退货、不换货、不提供售后客服。</strong> 任何情况均不例外。</div>
-      <p>我们的商品全部来自北美亚马逊、Costco、山姆俱乐部、家乐福等大型超市的<strong>退货及清仓库存</strong>。这意味着：</p>
-      <p>• 部分商品可能有<strong>外包装破损、轻微磨损或划痕</strong><br>• 部分商品可能<strong>缺少原厂配件或说明书</strong><br>• 商品图片仅供参考，<strong>实物以收到为准</strong><br>• 所有商品均为<strong>北美正品</strong>，非假冒伪劣</p>
-      <div class="highlight">💡 我们的目标：让北美千家万户用上真正好品质的货，端到端直达，省去中间商20%的提成。我们凭信任做生意——你信任我，我诚实待你。</div>
-      <p>由于利润极低，本店<strong>没有客服团队、没有商务人员</strong>，无法处理任何投诉或售后请求。</p>
-      <p><strong>能接受以上条件，欢迎购买。不能接受，请勿下单。这是对彼此的尊重。</strong></p>
-    </div>
-    <div class="policy-content" id="policy-en">
-      <p><strong>Please read carefully before purchasing. Placing an order means you fully understand and accept all terms.</strong></p>
-      <div class="highlight">🚫 All items: <strong>No returns, no exchanges, no customer service.</strong> No exceptions.</div>
-      <p>All products come from <strong>clearance and returned stock</strong> from major North American retailers (Amazon, Costco, Sam's Club, Carrefour):</p>
-      <p>• Some items may have <strong>damaged packaging, light wear, or scratches</strong><br>• Some items may be <strong>missing accessories or manuals</strong><br>• Photos are reference only — <strong>actual item may differ</strong><br>• All items are <strong>authentic North American products</strong></p>
-      <div class="highlight">💡 Our only goal: get quality goods directly to North American households, cutting out 20% middleman markup. Trust-based commerce — you trust us, we're honest with you.</div>
-      <p>Due to extremely thin margins, we have <strong>no customer service or business team</strong> and cannot handle complaints or after-sales requests.</p>
-      <p><strong>If you accept these terms, you're welcome. If not, please don't order. We respect each other's time.</strong></p>
-    </div>
-    <div class="policy-content" id="policy-es">
-      <p><strong>Lea atentamente antes de comprar. Realizar un pedido significa que acepta todos los términos.</strong></p>
-      <div class="highlight">🚫 Todos los artículos: <strong>Sin devoluciones, sin cambios, sin servicio al cliente.</strong> Sin excepciones.</div>
-      <p>Todos los productos provienen de <strong>stock de liquidación y devoluciones</strong> de grandes minoristas norteamericanos.</p>
-      <p>• Algunos artículos pueden tener <strong>embalaje dañado o desgaste leve</strong><br>• Algunos pueden <strong>faltar accesorios o manuales</strong><br>• Las fotos son de referencia — <strong>el artículo real puede variar</strong><br>• Todos son <strong>productos auténticos</strong></p>
-      <div class="highlight">💡 Nuestro único objetivo: llevar productos de calidad directamente a los hogares, eliminando el 20% de intermediarios. Comercio de confianza mutua.</div>
-      <p><strong>Si puede aceptar estos términos, bienvenido. Si no, por favor no pida.</strong></p>
-    </div>
-    <div class="policy-content" id="policy-ja">
-      <p><strong>購入前に必ずお読みください。注文することで、すべての条件を承認したとみなされます。</strong></p>
-      <div class="highlight">🚫 全商品：<strong>返品不可・交換不可・カスタマーサービスなし。</strong> 例外なし。</div>
-      <p>当店の商品はすべてAmazon、Costco、Sam's Club、カルフールなどの<strong>クリアランスおよび返品在庫</strong>です。</p>
-      <p>• 一部商品は<strong>パッケージの破損や軽微な傷</strong>がある場合があります<br>• 一部商品は<strong>付属品や説明書が欠品</strong>している場合があります<br>• 商品画像は参考のみ<br>• すべて<strong>北米の正規品</strong>です</p>
-      <div class="highlight">💡 唯一の目標：中間業者20%をカットし、良質な商品を直接お届け。信頼に基づいたビジネスです。</div>
-      <p><strong>条件をご承認いただける方はぜひご購入ください。承認できない場合はご注文をお控えください。</strong></p>
-    </div>
-    <div class="policy-content" id="policy-ko">
-      <p><strong>구매 전 주의 깊게 읽어주세요. 주문하면 모든 조건에 동의한 것으로 간주됩니다.</strong></p>
-      <div class="highlight">🚫 모든 상품: <strong>반품 불가, 교환 불가, 고객 서비스 없음.</strong> 예외 없음.</div>
-      <p>모든 상품은 Amazon, Costco, Sam's Club, Carrefour의 <strong>재고 및 반품 상품</strong>입니다.</p>
-      <p>• 일부 상품은 <strong>포장 손상이나 가벼운 마모</strong>가 있을 수 있습니다<br>• 일부 상품은 <strong>액세서리나 설명서가 없을</strong> 수 있습니다<br>• 상품 사진은 참고용<br>• 모두 <strong>북미 정품</strong>입니다</p>
-      <div class="highlight">💡 유일한 목표: 20% 중간상 없애고 품질 좋은 상품 직접 전달. 신뢰를 기반으로 운영합니다.</div>
-      <p><strong>이 조건을 수락할 수 있으면 환영합니다. 수락할 수 없으면 주문하지 마세요.</strong></p>
-    </div>
-    <div class="policy-content" id="policy-fr">
-      <p><strong>Veuillez lire attentivement avant d'acheter. Commander signifie que vous acceptez tous les termes.</strong></p>
-      <div class="highlight">🚫 Tous les articles: <strong>Pas de retours, pas d'échanges, pas de service client.</strong> Sans exceptions.</div>
-      <p>Tous les produits proviennent de <strong>stocks de liquidation et retours</strong> des grands détaillants nord-américains.</p>
-      <p>• Certains articles peuvent avoir <strong>l'emballage endommagé ou une légère usure</strong><br>• Certains peuvent <strong>manquer d'accessoires ou de manuels</strong><br>• Les photos sont pour référence seulement<br>• Tous sont <strong>des produits authentiques</strong></p>
-      <div class="highlight">💡 Notre seul objectif: livrer des produits de qualité directement aux ménages, en éliminant les 20% d'intermédiaires. Nous fonctionnons par confiance.</div>
-      <p><strong>Si vous acceptez ces conditions, bienvenue. Sinon, ne commandez pas.</strong></p>
-    </div>
-  </div>
-</div>
+<script src="products.js"></script>
 
 <script>
-let currentLang = 'zh';
-function setLang(lang, el) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-list span').forEach(s => s.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.t').forEach(e => {
-    const v = e.getAttribute('data-' + lang);
-    if (v) e.innerHTML = v;
-  });
-}
-function openWholesale() { document.getElementById('wholesaleModal').classList.add('open'); }
-function closeWholesale() { document.getElementById('wholesaleModal').classList.remove('open'); }
-function openPolicy() { document.getElementById('policyModal').classList.add('open'); showPolicyLang(currentLang); }
-function closePolicy() { document.getElementById('policyModal').classList.remove('open'); }
-document.getElementById('wholesaleModal').addEventListener('click', function(e) { if(e.target===this) closeWholesale(); });
-document.getElementById('policyModal').addEventListener('click', function(e) { if(e.target===this) closePolicy(); });
-function showPolicyLang(lang) {
-  document.querySelectorAll('.policy-content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.policy-lang-tab').forEach(t => t.classList.remove('active'));
-  const c = document.getElementById('policy-' + lang);
-  if (c) c.classList.add('active');
-  const m = {zh:'中文',en:'English',es:'Español',ja:'日本語',ko:'한국어',fr:'Français'};
-  document.querySelectorAll('.policy-lang-tab').forEach(t => { if(t.textContent===m[lang]) t.classList.add('active'); });
-}
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  function getFiltered() {
+    return products.filter(p => {
+      const matchFilter =
+        currentFilter === 'all' ? true :
+        currentFilter === '3C' ? p.category === '3C' :
+        currentFilter === '家居' ? p.category === '家居' :
+        currentFilter === '厨房' ? p.category === '厨房' :
+        p.tag === currentFilter;
+
+      const q = currentSearch.toLowerCase();
+      const matchSearch = !q ||
+        p.nameZh.toLowerCase().includes(q) ||
+        p.nameEn.toLowerCase().includes(q);
+    
+      return matchFilter && matchSearch;
+    });
+  }
+
+  function renderGrid() {
+    const filtered = getFiltered();
+    const grid = document.getElementById('productGrid');
+    const empty = document.getElementById('emptyState');
+    const countSpan = document.getElementById('countSpan');
+
+    countSpan.textContent = filtered.length;
+    
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <span class="card-category">${p.category}</span>
+        <span class="card-icon">${p.icon || '📦'}</span>
+        ${p.tag ? `<span class="card-tag tag-${p.tag}">${p.tag}</span>` : ''}
+        <div class="card-name-zh">${p.nameZh}</div>
+        <div class="card-name-en">${p.nameEn}</div>
+        ${p.price !== null && p.price !== undefined
+          ? `<div class="card-price">$${Number(p.price).toFixed(2)}</div>`
+          : `<div class="card-price-tbd">价格待询</div>`
+        }
+      </div>
+    `).join('');
+  }
+
+  function filterBy(f) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderGrid();
+  }
+
+  function onSearch() {
+    currentSearch = document.getElementById('searchBox').value;
+    renderGrid();
+  }
+
+  // Init
+  renderGrid();
 </script>
 
 </body>
