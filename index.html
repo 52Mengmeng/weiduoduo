@@ -1,425 +1,80 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>尾多多 3C 产品目录 | WeiDuoDuo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>尾多多 WeiDuoDuo</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:sans-serif;background:#f5f5f5}nav{background:#fff;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:99}.logo{font-size:1.3rem;font-weight:900;color:#e85d26;text-decoration:none}.nav-a{color:#555;text-decoration:none;margin-left:24px;font-size:.9rem}.hero{background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;text-align:center;padding:64px 24px}.hero h1{font-size:2.4rem;font-weight:900;margin-bottom:12px}.hero p{color:rgba(255,255,255,.6);margin-bottom:28px}.btn{background:#e85d26;color:#fff;border:none;padding:14px 32px;border-radius:8px;font-size:1rem;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block}.main{max-width:1100px;margin:0 auto;padding:48px 24px}.sec-title{font-size:1.6rem;font-weight:900;margin-bottom:8px}.sec-label{color:#e85d26;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px}.cat-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:56px}.cat{background:#fff;border-radius:14px;padding:22px 8px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .2s;text-decoration:none;color:#1a1a1a;display:block}.cat:hover{border-color:#e85d26;transform:translateY(-3px)}.cat.new{border-color:#e85d26;background:#fff8f5;position:relative}.cat .new-tag{position:absolute;top:7px;right:7px;background:#e85d26;color:#fff;font-size:.55rem;padding:2px 5px;border-radius:3px}.cat .emoji{font-size:2.2rem;display:block;margin-bottom:8px}.cat .name{font-weight:700;font-size:.85rem;margin-bottom:3px}.cat .sub{font-size:.65rem;color:#aaa}.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}.prod{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);cursor:pointer;transition:all .2s}.prod:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,.1)}.prod-img{width:100%;aspect-ratio:1;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;overflow:hidden}.prod-img img{width:100%;height:100%;object-fit:cover}.prod-info{padding:14px}.prod-cat{font-size:.65rem;color:#e85d26;font-weight:700;margin-bottom:3px}.prod-name{font-weight:700;font-size:.88rem;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.prod-foot{display:flex;justify-content:space-between;align-items:center}.prod-price{font-size:1.1rem;font-weight:900;color:#e85d26}.add{background:#e85d26;color:#fff;border:none;width:30px;height:30px;border-radius:6px;font-size:1rem;cursor:pointer}.empty{text-align:center;padding:60px;color:#ccc;grid-column:1/-1}.feat{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:14px;overflow:hidden;margin-top:48px}.feat-i{padding:32px 20px;text-align:center;border-right:1px solid #f0f0f0}.feat-i:last-child{border:none}.feat-i .ic{font-size:1.8rem;margin-bottom:10px}.feat-i h3{font-weight:700;font-size:.9rem;margin-bottom:4px}.feat-i p{font-size:.75rem;color:#999}footer{background:#1a1a1a;color:rgba(255,255,255,.5);text-align:center;padding:32px;font-size:.82rem;margin-top:48px}footer a{color:#e85d26}</style></head><body><nav><a class="logo" href=" ">尾多多·WeiDuoDuo</a ><div><a class="nav-a" href="#cats">分类</a ><a class="nav-a" href="#prods">产品</a ><a class="nav-a" href="admin.html">⚙后台</a ></div></nav><div class="hero"><h1>北美正品·直邮到家</h1><p>女装·饰品·家居·宠物用品·百款精选</p ><a class="btn" href="#prods">立即选购</a ></div><div class="main"><div id="cats"><div class="sec-label">商品分类</div><div class="sec-title" style="margin-bottom:24px">我们有什么货</div><div class="cat-grid"><a class="cat" href="#" onclick="filter('女装')"><span class="emoji">👗</span><div class="name">女装</div><div class="sub">连衣裙·上衣·裤子</div></a ><a class="cat" href="#" onclick="filter('鞋履')"><span class="emoji">👠</span><div class="name">鞋履</div><div class="sub">各种款式尺码</div></a ><a class="cat" href="#" onclick="filter('包袋')"><span class="emoji">👜</span><div class="name">包袋</div><div class="sub">手提包·钱包</div></a ><a class="cat" href="#" onclick="filter('饰品首饰')"><span class="emoji">💍</span><div class="name">饰品首饰</div><div class="sub">项链·戒指·耳环</div></a ><a class="cat" href="#" onclick="filter('围巾披肩')"><span class="emoji">🧣</span><div class="name">围巾披肩</div><div class="sub">羊绒·羊毛</div></a ><a class="cat" href="#" onclick="filter('外套大衣')"><span class="emoji">🧥</span><div class="name">外套大衣</div><div class="sub">夹克·大衣</div></a ><a class="cat" href="#" onclick="filter('家居用品')"><span class="emoji">🏠</span><div class="name">家居用品</div><div class="sub">厨具·家纺</div></a ><a class="cat new" href="#" onclick="filter('宠物用品')"><span class="new-tag">新</span><span class="emoji">🐾</span><div class="name">宠物用品</div><div class="sub">狗狗·猫咪</div></a ></div></div><div id="prods"><div class="sec-label">精选好货</div><div class="sec-title" style="margin-bottom:24px" id="ptitle">全部产品</div><div class="prod-grid" id="pgrid"></div></div><div class="feat"><div class="feat-i"><div class="ic">🚚</div><h3>快速发货</h3><p>北美仓库直发</p ></div><div class="feat-i"><div class="ic">✅</div><h3>正品保证</h3><p>假一赔十</p ></div><div class="feat-i"><div class="ic">💬</div><h3>中文客服</h3><p>微信随时联系</p ></div><div class="feat-i"><div class="ic">🔄</div><h3>退换无忧</h3><p>7天无理由</p ></div></div></div><footer><p>© 2025 尾多多 WeiDuoDuo · weiduoduo.shop · <a href="admin.html">后台管理</a ></p ></footer><script>function getP(){try{return JSON.parse(localStorage.getItem("wdd")||"[]")}catch(e){return[]}}function render(arr){var g=document.getElementById("pgrid");if(!arr.length){g.innerHTML='<div class="empty">📦 暂无产品，请前往<a href="admin.html" style="color:#e85d26">后台</a >上传</div>';return}g.innerHTML=arr.map(function(p){return'<div class="prod"><div class="prod-img">'+(p.img?'< img src="'+p.img+'">':'📦')+'</div><div class="prod-info"><div class="prod-cat">'+(p.cat||"")+'</div><div class="prod-name">'+(p.name||"")+'</div><div class="prod-foot"><span class="prod-price">$'+(p.price||0)+'</span><button class="add">+</button></div></div></div>'}).join("")}function filter(c){document.getElementById("ptitle").textContent=c;render(getP().filter(function(p){return(p.cat||"").indexOf(c)>-1}));document.getElementById("prods").scrollIntoView({behavior:"smooth"});return false}render(getP())</script></body></html>
+<!-- 付款方式区块 - 放到您想显示的位置 -->
+<div class="payment-section">
+  <h3>付款方式 / Payment Methods</h3>
+  
+  <!-- PayPal 按钮 -->
+  <a href=" " target="_blank" class="pay-btn paypal-btn">
+    < img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal">
+    用 PayPal 付款
+  </a >
 
-    :root {
-      --red: #E63946;
-      --red-dark: #c1121f;
-      --gold: #FFB703;
-      --bg: #0A0A0F;
-      --surface: #13131A;
-      --surface2: #1C1C26;
-      --border: rgba(255,255,255,0.07);
-      --text: #F0F0F0;
-      --muted: #888899;
-      --card-hover: #1E1E2A;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans SC', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── HEADER ── */
-    header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,15,0.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 5vw;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .logo {
-      font-size: 1.4rem; font-weight: 900; letter-spacing: -0.02em;
-      color: var(--text);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .logo-badge {
-      background: var(--red);
-      color: #fff;
-      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.06em;
-      padding: 3px 7px; border-radius: 4px;
-      text-transform: uppercase;
-    }
-    nav { display: flex; gap: 4px; }
-    nav a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.85rem; padding: 6px 14px; border-radius: 8px;
-      transition: all 0.2s;
-    }
-    nav a:hover, nav a.active { color: var(--text); background: var(--surface2); }
-    .admin-btn {
-      background: var(--surface2);
-      color: var(--muted) !important;
-      border: 1px solid var(--border) !important;
-      font-size: 0.8rem !important;
-      transition: all 0.2s !important;
-    }
-    .admin-btn:hover { color: var(--gold) !important; border-color: var(--gold) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      padding: 80px 5vw 60px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; top: -120px; right: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(230,57,70,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
-      color: var(--red); text-transform: uppercase; margin-bottom: 16px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--red); }
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 900; line-height: 1.1; letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    h1 span { color: var(--red); }
-    .hero-sub {
-      font-size: 1rem; color: var(--muted); max-width: 480px; line-height: 1.6;
-      margin-bottom: 32px;
-    }
-    .hero-stats {
-      display: flex; gap: 40px; flex-wrap: wrap;
-    }
-    .stat { display: flex; flex-direction: column; gap: 2px; }
-    .stat-num { font-size: 1.6rem; font-weight: 700; color: var(--text); }
-    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
-
-    /* ── FILTERS ── */
-    .filters-bar {
-      padding: 0 5vw 24px;
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-    }
-    .search-wrap {
-      flex: 1; min-width: 220px; max-width: 340px; position: relative;
-    }
-    .search-wrap input {
-      width: 100%; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; color: var(--text); padding: 10px 16px 10px 40px;
-      font-size: 0.9rem; font-family: inherit; outline: none;
-      transition: border-color 0.2s;
-    }
-    .search-wrap input:focus { border-color: var(--red); }
-    .search-wrap .icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; }
-    .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filt {
-      padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border);
-      background: transparent; color: var(--muted); font-size: 0.82rem;
-      cursor: pointer; transition: all 0.2s; font-family: inherit;
-    }
-    .filt:hover { border-color: rgba(230,57,70,0.4); color: var(--text); }
-    .filt.active { background: var(--red); border-color: var(--red); color: #fff; }
-    .sort-select {
-      margin-left: auto; background: var(--surface); border: 1px solid var(--border);
-      color: var(--muted); border-radius: 8px; padding: 8px 12px;
-      font-size: 0.82rem; font-family: inherit; outline: none; cursor: pointer;
-    }
-
-    /* ── GRID ── */
-    .grid {
-      padding: 0 5vw 80px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    /* ── PRODUCT CARD ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden;
-      cursor: pointer; position: relative;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-      animation: fadeUp 0.4s ease both;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(230,57,70,0.3);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(230,57,70,0.1);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card-img {
-      height: 160px; background: var(--surface2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; position: relative;
-      border-bottom: 1px solid var(--border);
-    }
-    .card-img::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(230,57,70,0.05) 0%, transparent 70%);
-    }
-    .badge {
-      position: absolute; top: 10px; right: 10px;
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em;
-      padding: 3px 8px; border-radius: 6px; text-transform: uppercase;
-    }
-    .badge-new { background: var(--red); color: #fff; }
-    .badge-hot { background: var(--gold); color: #000; }
-    .badge-premium { background: linear-gradient(135deg, #8B5CF6, #6366F1); color: #fff; }
-    .badge-inquiry { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-
-    .card-body { padding: 16px; }
-    .card-id { font-size: 0.7rem; color: var(--muted); margin-bottom: 4px; font-family: 'Space Grotesk', sans-serif; }
-    .card-name-zh { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
-    .card-name-en { font-size: 0.75rem; color: var(--muted); margin-bottom: 12px; line-height: 1.3; }
-    .card-footer {
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;
-    }
-    .price {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.3rem; font-weight: 700; color: var(--red);
-    }
-    .price sup { font-size: 0.7rem; vertical-align: super; }
-    .price-tbd { font-size: 0.8rem; color: var(--muted); font-style: italic; }
-    .unit-tag {
-      font-size: 0.7rem; color: var(--muted); background: var(--surface2);
-      padding: 3px 8px; border-radius: 6px;
-    }
-    .no-results {
-      grid-column: 1/-1; text-align: center; padding: 80px 0;
-      color: var(--muted); font-size: 1rem;
-    }
-
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
-      align-items: center; justify-content: center; padding: 20px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; max-width: 480px; width: 100%;
-      padding: 32px; position: relative;
-      animation: modalIn 0.3s ease;
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.95) translateY(10px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      background: var(--surface2); border: none; border-radius: 8px;
-      color: var(--muted); width: 32px; height: 32px;
-      font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    }
-    .modal-icon { font-size: 3.5rem; margin-bottom: 16px; }
-    .modal-zh { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
-    .modal-en { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; }
-    .modal-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-    .modal-row:last-of-type { border-bottom: none; }
-    .modal-label { color: var(--muted); }
-    .modal-val { font-weight: 600; }
-    .modal-price { font-size: 2rem; font-weight: 800; color: var(--red); font-family: 'Space Grotesk', sans-serif; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 5vw;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    }
-    footer .copy { font-size: 0.8rem; color: var(--muted); }
-    footer .ship { font-size: 0.8rem; color: var(--muted); }
-    footer .ship span { color: var(--gold); font-weight: 600; }
-
-    @media (max-width: 600px) {
-      nav a:not(.admin-btn) { display: none; }
-      .hero { padding: 40px 5vw 32px; }
-      .hero-stats { gap: 24px; }
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    尾多多
-    <span class="logo-badge">WDD</span>
-  </div>
-  <nav>
-    <a href="index.html" class="active">产品目录</a>
-    <a href="admin.html" class="admin-btn">🔧 后台管理</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="hero-eyebrow">3C Electronics Supply List · Honduras</div>
-  <h1>优质<span>3C</span>电子<br/>产品目录</h1>
-  <p class="hero-sub">涵盖照明、按摩、家电、美容等多品类优质3C产品，直发洪都拉斯，40HQ装柜。</p>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num" id="stat-total">27</span><span class="stat-label">总品类</span></div>
-    <div class="stat"><span class="stat-num">40HQ</span><span class="stat-label">集装箱</span></div>
-    <div class="stat"><span class="stat-num">29</span><span class="stat-label">托盘</span></div>
-    <div class="stat"><span class="stat-num">$1–7.5</span><span class="stat-label">价格区间</span></div>
-  </div>
-</section>
-
-<div class="filters-bar">
-  <div class="search-wrap">
-    <span class="icon">🔍</span>
-    <input type="text" id="search" placeholder="搜索产品名称…" />
-  </div>
-  <div class="filter-btns">
-    <button class="filt active" data-filter="all">全部</button>
-    <button class="filt" data-filter="new">新品</button>
-    <button class="filt" data-filter="hot">热销</button>
-    <button class="filt" data-filter="inquiry">询价</button>
-  </div>
-  <select class="sort-select" id="sort">
-    <option value="id">默认排序</option>
-    <option value="price-asc">价格↑</option>
-    <option value="price-desc">价格↓</option>
-    <option value="name">名称A-Z</option>
-  </select>
-</div>
-
-<main class="grid" id="grid"></main>
-
-<!-- Detail Modal -->
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
-    <div class="modal-icon" id="m-icon"></div>
-    <div class="modal-zh" id="m-zh"></div>
-    <div class="modal-en" id="m-en"></div>
-    <div class="modal-row"><span class="modal-label">编号</span><span class="modal-val" id="m-id"></span></div>
-    <div class="modal-row"><span class="modal-label">类别</span><span class="modal-val">3C 电子</span></div>
-    <div class="modal-row"><span class="modal-label">单位</span><span class="modal-val">pcs/件</span></div>
-    <div class="modal-row"><span class="modal-label">目的地</span><span class="modal-val">Honduras 🇭🇳</span></div>
-    <div class="modal-row">
-      <span class="modal-label">报价</span>
-      <span class="modal-price" id="m-price"></span>
-    </div>
+  <!-- Zelle -->
+  <div class="zelle-info">
+    <div class="zelle-logo">Zelle</div>
+    <p>Zelle 转账请发送至：</p >
+    <strong id="zelle-account">linfiona58@gmail.com</strong>
+    <br>
+    <button onclick="navigator.clipboard.writeText('linfiona58@gmail.com').then(() => { this.innerText='✅ 已复制！'; setTimeout(() => this.innerText='复制账号', 2000) })"
+            class="copy-btn">复制账号</button>
   </div>
 </div>
 
-<footer>
-  <div class="copy">© 2026 尾多多 WeiDuoDuo · 3C Supply Chain</div>
-  <div class="ship">发货日期 <span>4/10/2026</span> · 集装箱 <span>40HQ · 29托盘</span></div>
-</footer>
-
-<script src="products.js"></script>
-<script>
-let activeFilter = 'all';
-let searchQuery = '';
-let sortMode = 'id';
-
-function getBadge(tag) {
-  if (tag === '新品') return '<div class="badge badge-new">NEW</div>';
-  if (tag === '热销') return '<div class="badge badge-hot">HOT</div>';
-  if (tag === '精品') return '<div class="badge badge-premium">精品</div>';
-  if (tag === '询价') return '<div class="badge badge-inquiry">询价</div>';
-  return '';
+<style>
+.payment-section {
+  padding: 24px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 20px auto;
+  font-family: sans-serif;
+  text-align: center;
 }
-
-function renderGrid() {
-  let list = [...products];
-
-  if (searchQuery) {
-    list = list.filter(p =>
-      p.nameZh.includes(searchQuery) || p.nameEn.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }
-  if (activeFilter === 'new') list = list.filter(p => p.tag === '新品');
-  if (activeFilter === 'hot') list = list.filter(p => p.tag === '热销');
-  if (activeFilter === 'inquiry') list = list.filter(p => p.tag === '询价');
-
-  if (sortMode === 'price-asc') list.sort((a,b) => (a.price||99) - (b.price||99));
-  if (sortMode === 'price-desc') list.sort((a,b) => (b.price||0) - (a.price||0));
-  if (sortMode === 'name') list.sort((a,b) => a.nameEn.localeCompare(b.nameEn));
-
-  const grid = document.getElementById('grid');
-  if (!list.length) {
-    grid.innerHTML = '<div class="no-results">🔍 没有找到匹配产品</div>';
-    return;
-  }
-
-  grid.innerHTML = list.map((p, i) => `
-    <div class="card" style="animation-delay:${i * 0.04}s" onclick="openModal(${p.id})">
-      <div class="card-img">
-        ${p.icon}
-        ${getBadge(p.tag)}
-      </div>
-      <div class="card-body">
-        <div class="card-id"># ${String(p.id).padStart(2,'0')}</div>
-        <div class="card-name-zh">${p.nameZh}</div>
-        <div class="card-name-en">${p.nameEn}</div>
-        <div class="card-footer">
-          ${p.price !== null
-            ? `<div class="price"><sup>$</sup>${p.price.toFixed(1)}</div>`
-            : `<div class="price-tbd">价格待询</div>`}
-          <div class="unit-tag">${p.unit}</div>
-        </div>
-      </div>
-    </div>
-  `).join('');
-
-  document.getElementById('stat-total').textContent = list.length;
+.payment-section h3 {
+  margin-top: 0;
+  color: #333;
 }
-
-function openModal(id) {
-  const p = products.find(x => x.id === id);
-  document.getElementById('m-icon').textContent = p.icon;
-  document.getElementById('m-zh').textContent = p.nameZh;
-  document.getElementById('m-en').textContent = p.nameEn;
-  document.getElementById('m-id').textContent = `#${String(p.id).padStart(2,'0')}`;
-  document.getElementById('m-price').textContent = p.price !== null ? `$${p.price.toFixed(2)}` : '待询价';
-  document.getElementById('modal').classList.add('open');
+.pay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 8px;
+  transition: opacity 0.2s;
 }
-
-function closeModal(e) {
-  if (e.target === document.getElementById('modal')) {
-    document.getElementById('modal').classList.remove('open');
-  }
+.pay-btn:hover { opacity: 0.85; }
+.paypal-btn {
+  background: #0070BA;
+  color: white;
 }
-
-document.getElementById('search').addEventListener('input', e => {
-  searchQuery = e.target.value.trim();
-  renderGrid();
-});
-
-document.querySelectorAll('.filt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    renderGrid();
-  });
-});
-
-document.getElementById('sort').addEventListener('change', e => {
-  sortMode = e.target.value;
-  renderGrid();
-});
-
-renderGrid();
-</script>
-</body>
-</html>
+.paypal-btn img { height: 20px; }
+.zelle-info {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f0f0ff;
+  border-radius: 8px;
+  color: #333;
+}
+.zelle-logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: #6D1ED4;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.copy-btn {
+  margin-top: 8px;
+  padding: 6px 16px;
+  background: #6D1ED4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.copy-btn:hover { background: #5a18b0; }
+</style>
